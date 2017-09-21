@@ -1,5 +1,12 @@
 #include "fractol.h"
 
+void	put_pixel(t_point *p, t_env *e)
+{
+	if (p->y < e->win_height && p->x < e->win_width &&
+		p->y >= 0 && p->x >= 0)
+		e->data[p->y * e->win_width + p->x] = p->color;
+}
+
 void	init_point(t_point *p)
 {
 	p->x = 0;
@@ -20,17 +27,11 @@ int		init(t_env *e)
 		return (-1);
 	e->win_width = WIDTH;
 	e->win_height = HEIGHT;
-	e->scale = (e->win_width / e->o.width + e->win_height / e->o.height) / 4;
-	e->origin.x = (e->win_width / 2) - ((e->o.width * e->scale) / 2);
-	e->origin.y = (e->win_height / 2) - ((e->o.height * e->scale) / 2);
 	e->win = mlx_new_window(e->mlx, e->win_width, e->win_height, "win");
-	e->o.pitch = 1;
-	e->o.bres = 1;
-	e->o.iso = 1;
-	e->alt = 0;
 	e->color = 0xFFFFFF;
 	return (0);
 }
+
 int		main(int argc, char **argv)
 {
 	t_env		e;
@@ -41,7 +42,11 @@ int		main(int argc, char **argv)
 		!ft_strcmp(argv[1], "/dev/urandom"))
 		return (-1);
 	if (argc == 2)
-		sleep(0);
+	{
+		init(&e);
+		init_img(&e);
+		choice(argv[1], &e);
+	}
 	if (init(&e) < 0)
 		return (-1);
 	mlx_hook(e.win, 17, (1L << 17), quit, &e);

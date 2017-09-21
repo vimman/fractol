@@ -44,41 +44,34 @@ typedef struct			s_env
 	int			size;
 	int			bpp;
 	int			endian;
-
 }						t_env;
 
-typedef struct s_bres	t_bres;
-struct					s_bres
+typedef struct			s_julia
 {
-	int		dx;
-	int		sx;
-	int		dy;
-	int		sy;
-	int		err;
-	int		e2;
-};
+	t_point	p;
+	double	c_re;
+	double	c_im;
+	double	new_re;
+	double	new_im;
+	double	old_re;
+	double	old_im;
+	double	zoom;
+	double	movex;
+	double	movey;
+	int		color;
+	int		maxit;
+}						t_julia;
 
 void					set(t_env *e);
-void					iso(t_env *e);
 int						quit(t_env *e);
 int						init(t_env *e);
-void					tg_alt(t_env *e);
-void					tg_rota(t_env *e);
-void					tg_trace(t_env *e);
 void					init_img(t_env *e);
-t_point					**tab_dup(t_obj *o);
-void					free_tab(char **tab);
+int						ft_julia(t_env *e);
 int						expose_hook(t_env *e);
-int						zoom(int keycode, t_env *e);
-void					move(int keycode, t_env *e);
-t_env					*parser(char *arg, t_env *e);
-void					color_p(t_point *p, t_env *e);
-void					draw(t_point **tab, t_env *e);
-void					pitchit(int keycode, t_env *e);
-void					trace(t_point **tab, t_env *e);
+int						ft_mandelbrot(t_env *e);
+int						choice(char *arg, t_env *e);
 void					put_pixel(t_point *p, t_env *e);
 int						key_hook(int keycode, t_env *e);
-void					bresenham(t_point a, t_point b, t_env *e);
 int						mouse_hook(int button, int x, int y, t_env *e);
 int						mlx_hook(void *win_ptr, int x_event, int x_mask,
 						int (*funct)(), void *param);
