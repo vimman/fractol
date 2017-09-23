@@ -62,12 +62,25 @@ typedef struct			s_julia
 	int		maxit;
 }						t_julia;
 
+typedef struct			s_mandelbrot
+{
+	t_point	p;
+	double	it_max;
+	double	cr;
+	double	ci;
+	double	zr;
+	double	zi;
+	double	i;
+
+}						t_mandelbrot;
+
 void					set(t_env *e);
 int						quit(t_env *e);
 int						init(t_env *e);
 void					init_img(t_env *e);
 int						ft_julia(t_env *e);
 int						expose_hook(t_env *e);
+void					init_point(t_point *p);
 int						ft_mandelbrot(t_env *e);
 int						choice(char *arg, t_env *e);
 void					put_pixel(t_point *p, t_env *e);

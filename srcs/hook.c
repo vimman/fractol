@@ -8,8 +8,8 @@ int		quit(t_env *e)
 
 int		key_hook(int keycode, t_env *e)
 {
-	(void)keycode;
-	(void)e;
+	if (keycode == 53)
+		quit(e);
 	return (0);
 }
 

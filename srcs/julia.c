@@ -2,41 +2,38 @@
 
 int		ft_julia(t_env *e)
 {
+	(void)e;
+	return (0);
 }
 
 int		ft_mandelbrot(t_env *e)
 {
-	t_point	p;
-	double	it_max;
-	double	cr;
-	double	ci;
-	double	zr;
-	double	zi;
-	double	i;
+	t_mandelbrot	m;
 
-	it_max = 50;
-	init_point(p);
-	while (p.x < e->win_width)
+	m.it_max = 50;
+	init_point(&m.p);
+	while (m.p.x < e->win_width)
 	{
-		while (p.y < e->win_height)
+		while (m.p.y < e->win_height)
 		{
-			cr = p.x;
-			ci = p.y;
-			zr = 0;
-			zi = 0;
-			i = 0;
-			while (zr * zr + zi * zi < 4 && i < it_max)
+			m.cr = m.p.x;
+			m.ci = m.p.y;
+			m.zr = 0;
+			m.zi = 0;
+			m.i = 0;
+			while (m.zr * m.zr + m.zi * m.zi < 4 && m.i < m.it_max)
 			{
-				zr = zr * zr - zi * zi + ci;
-				zi = 2 * zr * zi + ci;
-				i++;
+				m.zr = m.zr * m.zr - m.zi * m.zi + m.ci;
+				m.zi = 2 * m.zr * m.zi + m.ci;
+				m.i++;
 			}
-			if (i == it_max)
-				put_pixel(&p, e);
-			p.y++;
+			if (m.i == m.it_max)
+				put_pixel(&m.p, e);
+			m.p.y++;
 		}
-		p.x++;
+		m.p.x++;
 	}
+	return (0);
 }
 
 int		choice(char *arg, t_env *e)
