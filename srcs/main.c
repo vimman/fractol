@@ -9,9 +9,9 @@ void	put_pixel(t_point *p, t_env *e)
 
 void	init_point(t_point *p)
 {
-	p->x = 0;
-	p->y = 0;
-	p->z = 0;
+	p->x = -1;
+	p->y = -1;
+	p->z = -1;
 	p->color = 0xFFFFFF;
 }
 
@@ -43,12 +43,11 @@ int		main(int argc, char **argv)
 		return (-1);
 	if (argc == 2)
 	{
-		init(&e);
+		if (init(&e) < 0)
+			return (-1);
 		init_img(&e);
 		choice(argv[1], &e);
 	}
-	if (init(&e) < 0)
-		return (-1);
 	mlx_hook(e.win, 17, (1L << 17), quit, &e);
 	mlx_key_hook(e.win, key_hook, &e);
 	mlx_mouse_hook(e.win, mouse_hook, &e);

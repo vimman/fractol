@@ -8,8 +8,8 @@
 # include "mlx.h"
 # include "libft.h"
 
-# define WIDTH 1280;
-# define HEIGHT 800;
+# define WIDTH 1280
+# define HEIGHT 800
 
 # define GREEN	0x009688
 # define YELLOW	0xfeff77
@@ -25,10 +25,6 @@ typedef struct			s_point
 	int		z;
 	int		color;
 }						t_point;
-
-typedef struct			s_obj
-{
-}						t_obj;
 
 typedef struct			s_env
 {
@@ -65,13 +61,22 @@ typedef struct			s_julia
 typedef struct			s_mandelbrot
 {
 	t_point	p;
+	long	i;
+	double	x1;
+	double	x2;
+	double	y1;
+	double	y2;
+	double	zoom;
+	double	img_x;
+	double	img_y;
 	double	it_max;
 	double	cr;
 	double	ci;
 	double	zr;
 	double	zi;
-	double	i;
-
+	double	tmp;
+	double	zoom_x;
+	double	zoom_y;
 }						t_mandelbrot;
 
 void					set(t_env *e);
@@ -81,7 +86,7 @@ void					init_img(t_env *e);
 int						ft_julia(t_env *e);
 int						expose_hook(t_env *e);
 void					init_point(t_point *p);
-int						ft_mandelbrot(t_env *e);
+void					ft_mandelbrot(t_env *e);
 int						choice(char *arg, t_env *e);
 void					put_pixel(t_point *p, t_env *e);
 int						key_hook(int keycode, t_env *e);
