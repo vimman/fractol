@@ -45,17 +45,24 @@ typedef struct			s_env
 typedef struct			s_julia
 {
 	t_point	p;
-	double	c_re;
-	double	c_im;
-	double	new_re;
-	double	new_im;
-	double	old_re;
-	double	old_im;
+	long	i;
+	double	x1;
+	double	x2;
+	double	y1;
+	double	y2;
 	double	zoom;
-	double	movex;
-	double	movey;
+	double	img_x;
+	double	img_y;
+	double	it_max;
+	double	cr;
+	double	ci;
+	double	zr;
+	double	zi;
+	double	tmp;
+	double	zoom_x;
+	double	zoom_y;
 	int		color;
-	int		maxit;
+
 }						t_julia;
 
 typedef struct			s_mandelbrot
@@ -77,16 +84,21 @@ typedef struct			s_mandelbrot
 	double	tmp;
 	double	zoom_x;
 	double	zoom_y;
+	int		color;
 }						t_mandelbrot;
 
+void					color_point(t_mandelbrot *m);
+void					ft_julia(t_env *e, t_mandelbrot m);
+void					julia_init(t_mandelbrot *j);
+void					color_1(t_mandelbrot *m);
+void					ft_mandelbrot(t_env *e, t_mandelbrot m);
+void					mandel_init(t_mandelbrot *m);
 void					set(t_env *e);
 int						quit(t_env *e);
 int						init(t_env *e);
 void					init_img(t_env *e);
-int						ft_julia(t_env *e);
 int						expose_hook(t_env *e);
 void					init_point(t_point *p);
-void					ft_mandelbrot(t_env *e);
 int						choice(char *arg, t_env *e);
 void					put_pixel(t_point *p, t_env *e);
 int						key_hook(int keycode, t_env *e);
