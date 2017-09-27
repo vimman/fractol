@@ -12,7 +12,7 @@ void	mandel_init(t_mandelbrot *m)
 	m->img_y = HEIGHT + m->zoom;
 	m->zoom_x = m->img_x / (m->x2 - m->x1);
 	m->zoom_y = m->img_y / (m->y2 - m->y1);
-	m->color = 2;
+	m->color.co = 2;
 	init_point(&m->p);
 }
 
@@ -21,7 +21,7 @@ void	color_1(t_mandelbrot *m)
 	if (m->i == m->it_max)
 		m->p.color = YELLOW * m->zr * m->zi * m->cr * m->ci;
 	else
-		m->p.color = m->i * 65025 / m->it_max * 4;
+		m->p.color = m->i * m->color.c[0] / m->it_max * 4;
 }
 
 void	color_2(t_mandelbrot *m)
@@ -34,9 +34,9 @@ void	color_2(t_mandelbrot *m)
 
 void	color_point(t_mandelbrot *m)
 {
-	if (m->color == 1)
+	if (m->color.co == 1)
 		color_1(m);
-	else if (m->color == 2)
+	else if (m->color.co == 2)
 		color_2(m);
 }
 

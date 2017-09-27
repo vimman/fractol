@@ -18,6 +18,12 @@
 # define WHITE	0xFFFFFF
 # define BROWN	0x654432
 
+typedef union			s_col
+{
+	char	c[4];
+	int		co;
+}						t_col;
+
 typedef struct			s_point
 {
 	int		x;
@@ -25,6 +31,28 @@ typedef struct			s_point
 	int		z;
 	int		color;
 }						t_point;
+
+typedef struct			s_mandelbrot
+{
+	t_col	color;
+	t_point	p;
+	long	i;
+	double	x1;
+	double	x2;
+	double	y1;
+	double	y2;
+	double	zoom;
+	double	img_x;
+	double	img_y;
+	double	it_max;
+	double	cr;
+	double	ci;
+	double	zr;
+	double	zi;
+	double	tmp;
+	double	zoom_x;
+	double	zoom_y;
+}						t_mandelbrot;
 
 typedef struct			s_env
 {
@@ -40,53 +68,12 @@ typedef struct			s_env
 	int			size;
 	int			bpp;
 	int			endian;
+	
+	t_mandelbrot	m;
 }						t_env;
 
-typedef struct			s_julia
-{
-	t_point	p;
-	long	i;
-	double	x1;
-	double	x2;
-	double	y1;
-	double	y2;
-	double	zoom;
-	double	img_x;
-	double	img_y;
-	double	it_max;
-	double	cr;
-	double	ci;
-	double	zr;
-	double	zi;
-	double	tmp;
-	double	zoom_x;
-	double	zoom_y;
-	int		color;
-
-}						t_julia;
-
-typedef struct			s_mandelbrot
-{
-	t_point	p;
-	long	i;
-	double	x1;
-	double	x2;
-	double	y1;
-	double	y2;
-	double	zoom;
-	double	img_x;
-	double	img_y;
-	double	it_max;
-	double	cr;
-	double	ci;
-	double	zr;
-	double	zi;
-	double	tmp;
-	double	zoom_x;
-	double	zoom_y;
-	int		color;
-}						t_mandelbrot;
-
+void					newton_init(t_mandelbrot *m);
+void					ft_newton(t_env *e);
 void					color_point(t_mandelbrot *m);
 void					ft_julia(t_env *e, t_mandelbrot m);
 void					julia_init(t_mandelbrot *j);

@@ -15,9 +15,9 @@ int		key_hook(int keycode, t_env *e)
 
 int		mouse_hook(int button, int x, int y, t_env *e)
 {
+	(void)button;
 	(void)x;
 	(void)y;
-	(void)button;
 	(void)e;
 	return (0);
 }
