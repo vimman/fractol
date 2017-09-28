@@ -21,6 +21,10 @@ void	change_color(t_env *e)
 		e->m.color++;
 	else
 		e->m.color = 1;
+	mlx_clear_window(e->mlx, e->win);
+	init_point(&e->m.p);
+	if (e->m.type == JULIA)
+		draw(e, ft_julia);
 }
 
 int		choice(char *arg, t_env *e)
@@ -32,7 +36,6 @@ int		choice(char *arg, t_env *e)
 	}
 	if (!ft_strcmp(arg, "julia"))
 	{
-		e->m.color = 1;
 		julia_init(&e->m);
 		draw(e, ft_julia);
 	}

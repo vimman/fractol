@@ -57,16 +57,12 @@ typedef struct			s_fractal
 	double	tmp;
 	double	zoom_x;
 	double	zoom_y;
-	int		movx;
-	int		movy;
 }						t_fractal;
 
 typedef struct			s_env
 {
 	void		*mlx;
 	void		*win;
-	int			win_width;
-	int			win_height;
 	t_point		origin;
 	int			color;
 

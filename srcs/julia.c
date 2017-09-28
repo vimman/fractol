@@ -7,12 +7,11 @@ void	julia_init(t_fractal *m)
 	m->x2 = 2;
 	m->y1 = -2;
 	m->y2 = 1.2;
-	//m->cr = 0.285;
-	//m->ci = 0.01;
-	m->cr = 0.002 * m->movx;
-	m->ci = 0.001 * m->movy;
+	m->cr = 0.285;
+	m->ci = 0.01;
 	m->zoom = 200;
 	m->it_max = 26;
+	m->color = 1;
 	m->img_x = (m->x2 - m->x1) * m->zoom;
 	m->img_y = (m->x2 - m->x1) * m->zoom;
 	init_point(&m->p);

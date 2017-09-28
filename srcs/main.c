@@ -2,9 +2,9 @@
 
 void	put_pixel(t_point *p, t_env *e)
 {
-	if (p->y < e->win_height && p->x < e->win_width &&
+	if (p->y < HEIGHT && p->x < WIDTH &&
 		p->y >= 0 && p->x >= 0)
-		e->data[p->y * e->win_width + p->x] = p->color;
+		e->data[p->y * WIDTH + p->x] = p->color;
 }
 
 void	init_point(t_point *p)
@@ -17,7 +17,7 @@ void	init_point(t_point *p)
 
 void	init_img(t_env *e)
 {
-	e->img = mlx_new_image(e->mlx, e->win_width, e->win_height);
+	e->img = mlx_new_image(e->mlx, WIDTH, HEIGHT);
 	e->data = (int *)mlx_get_data_addr(e->img, &e->bpp, &e->size, &e->endian);
 }
 
@@ -25,11 +25,7 @@ int		init(t_env *e)
 {
 	if (!(e->mlx = mlx_init()))
 		return (-1);
-	e->win_width = WIDTH;
-	e->win_height = HEIGHT;
-	e->m.movx = 1;
-	e->m.movy = 1;
-	e->win = mlx_new_window(e->mlx, e->win_width, e->win_height, "win");
+	e->win = mlx_new_window(e->mlx, WIDTH, HEIGHT, "win");
 	e->color = 0xFFFFFF;
 	return (0);
 }
