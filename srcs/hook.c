@@ -10,6 +10,8 @@ int		key_hook(int keycode, t_env *e)
 {
 	if (keycode == 53)
 		quit(e);
+	if (keycode == 7)
+		change_color(e);
 	return (0);
 }
 
@@ -27,3 +29,17 @@ int		expose_hook(t_env *e)
 	(void)e;
 	return (0);
 }
+
+int		move(int x, int y, t_env *e)
+{
+	if (e->m.type == 1)
+	{
+		e->m.movx = x;
+		e->m.movy = y;
+		mlx_clear_window(e->mlx, e->win);
+		julia_init(&e->m);
+		draw(e, ft_julia);
+	}
+	return (0);
+}
+

@@ -18,6 +18,10 @@
 # define WHITE	0xFFFFFF
 # define BROWN	0x654432
 
+# define JULIA	1
+# define MANDEL	2
+# define NEWTON	3
+
 typedef union			s_col
 {
 	char	c[4];
@@ -32,9 +36,10 @@ typedef struct			s_point
 	int		color;
 }						t_point;
 
-typedef struct			s_mandelbrot
+typedef struct			s_fractal
 {
-	t_col	color;
+	int		type;
+	int		color;
 	t_point	p;
 	long	i;
 	double	x1;
@@ -52,7 +57,9 @@ typedef struct			s_mandelbrot
 	double	tmp;
 	double	zoom_x;
 	double	zoom_y;
-}						t_mandelbrot;
+	int		movx;
+	int		movy;
+}						t_fractal;
 
 typedef struct			s_env
 {
@@ -69,17 +76,21 @@ typedef struct			s_env
 	int			bpp;
 	int			endian;
 	
-	t_mandelbrot	m;
+	t_fractal	m;
 }						t_env;
 
-void					newton_init(t_mandelbrot *m);
-void					ft_newton(t_env *e);
-void					color_point(t_mandelbrot *m);
-void					ft_julia(t_env *e, t_mandelbrot m);
-void					julia_init(t_mandelbrot *j);
-void					color_1(t_mandelbrot *m);
-void					ft_mandelbrot(t_env *e, t_mandelbrot m);
-void					mandel_init(t_mandelbrot *m);
+void					change_color(t_env *e);
+void					draw(t_env *e,void (*fractal)(t_fractal *m));
+int						move(int x, int y, t_env *e);
+void					color_point(t_fractal *m);
+void					newton_init(t_fractal *m);
+void					ft_newton(t_fractal *m);
+void					color_point(t_fractal *m);
+void					ft_julia(t_fractal *m);
+void					julia_init(t_fractal *j);
+void					color_1(t_fractal *m);
+void					ft_mandelbrot(t_fractal *m);
+void					mandel_init(t_fractal *m);
 void					set(t_env *e);
 int						quit(t_env *e);
 int						init(t_env *e);

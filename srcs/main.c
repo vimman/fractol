@@ -27,6 +27,8 @@ int		init(t_env *e)
 		return (-1);
 	e->win_width = WIDTH;
 	e->win_height = HEIGHT;
+	e->m.movx = 1;
+	e->m.movy = 1;
 	e->win = mlx_new_window(e->mlx, e->win_width, e->win_height, "win");
 	e->color = 0xFFFFFF;
 	return (0);
@@ -48,6 +50,7 @@ int		main(int argc, char **argv)
 		init_img(&e);
 		choice(argv[1], &e);
 	}
+	mlx_hook(e.win, 6, 0, move, &e);
 	mlx_hook(e.win, 17, (1L << 17), quit, &e);
 	mlx_key_hook(e.win, key_hook, &e);
 	mlx_mouse_hook(e.win, mouse_hook, &e);
