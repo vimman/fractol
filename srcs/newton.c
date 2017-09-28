@@ -11,6 +11,7 @@ void	newton_init(t_fractal *m)
 	m->img_x = WIDTH;
 	m->img_y = HEIGHT;
 	m->color = 3;
+	m->type = NEWTON;
 	init_point(&m->p);
 }
 

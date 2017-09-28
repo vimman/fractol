@@ -25,6 +25,10 @@ void	change_color(t_env *e)
 	init_point(&e->m.p);
 	if (e->m.type == JULIA)
 		draw(e, ft_julia);
+	else if (e->m.type == MANDEL)
+		draw(e, ft_mandelbrot);
+	else if (e->m.type == NEWTON)
+		draw(e, ft_newton);
 }
 
 int		choice(char *arg, t_env *e)
