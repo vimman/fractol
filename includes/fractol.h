@@ -1,12 +1,13 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
+# include <pthread.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <math.h>
-# include "mlx.h"
 # include "libft.h"
+# include "mlx.h"
 
 # define WIDTH 1280
 # define HEIGHT 800

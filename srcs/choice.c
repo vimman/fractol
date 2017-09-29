@@ -1,23 +1,8 @@
 #include "fractol.h"
 
-void	draw(t_env *e,void (*fractal)(t_fractal *m))
-{
-	while (++e->m.p.x < e->m.img_x)
-	{
-		while (++e->m.p.y < e->m.img_y)
-		{
-			fractal(&e->m);
-			color_point(&e->m);
-			put_pixel(&e->m.p, e);
-		}
-		e->m.p.y = 0;
-	}
-	mlx_put_image_to_window(e->data, e->win, e->img, 0, 0);
-}
-
 void	change_color(t_env *e)
 {
-	if (e->m.color < 3)
+	if (e->m.color < 5)
 		e->m.color++;
 	else
 		e->m.color = 1;
@@ -29,6 +14,7 @@ void	change_color(t_env *e)
 		draw(e, ft_mandelbrot);
 	else if (e->m.type == NEWTON)
 		draw(e, ft_newton);
+	ft_putendl(ft_itoa(e->m.color));
 }
 
 int		choice(char *arg, t_env *e)

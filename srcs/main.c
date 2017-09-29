@@ -26,7 +26,6 @@ int		init(t_env *e)
 	if (!(e->mlx = mlx_init()))
 		return (-1);
 	e->win = mlx_new_window(e->mlx, WIDTH, HEIGHT, "win");
-	e->color = 0xFFFFFF;
 	return (0);
 }
 

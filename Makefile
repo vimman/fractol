@@ -10,7 +10,8 @@ DIR = srcs
 
 LIB = lib
 
-SRCS = main.c hook.c julia.c mandelbrot.c newton.c color.c choice.c
+SRCS = main.c hook.c julia.c mandelbrot.c newton.c color.c choice.c zoom.c	\
+	   draw.c
 
 SRC = $(addprefix $(DIR)/,$(SRCS))
 
