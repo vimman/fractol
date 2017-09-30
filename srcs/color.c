@@ -1,4 +1,4 @@
-#include "fractol.h"
+#include "fractol.h" 
 
 void	color_1(t_fractal *m)
 {
@@ -54,3 +54,11 @@ void	color_point(t_fractal *m)
 		color_5(m);
 }
 
+void	change_color(t_env *e)
+{
+	if (e->m.color < 5)
+		e->m.color++;
+	else
+		e->m.color = 1;
+	redraw(e);
+}

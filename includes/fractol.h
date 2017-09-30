@@ -40,6 +40,7 @@ typedef struct			s_point
 typedef struct			s_fractal
 {
 	int		type;
+	int		stop;
 	int		color;
 	t_point	p;
 	long	i;
@@ -76,27 +77,30 @@ typedef struct			s_env
 	t_fractal	m;
 }						t_env;
 
-void					change_color(t_env *e);
-void					draw(t_env *e,void (*fractal)(t_fractal *m));
-int						move(int x, int y, t_env *e);
-void					color_point(t_fractal *m);
-void					newton_init(t_fractal *m);
-void					ft_newton(t_fractal *m);
-void					color_point(t_fractal *m);
-void					ft_julia(t_fractal *m);
-void					julia_init(t_fractal *j);
-void					color_1(t_fractal *m);
-void					ft_mandelbrot(t_fractal *m);
-void					mandel_init(t_fractal *m);
 void					set(t_env *e);
 int						quit(t_env *e);
 int						init(t_env *e);
+void					redraw(t_env *e);
 void					init_img(t_env *e);
+void					color_1(t_fractal *m);
 int						expose_hook(t_env *e);
+void					change_color(t_env *e);
+void					ft_julia(t_fractal *m);
 void					init_point(t_point *p);
+void					ft_newton(t_fractal *m);
+void					julia_init(t_fractal *j);
+void					mandel_init(t_fractal *m);
+void					color_point(t_fractal *m);
+void					newton_init(t_fractal *m);
+void					color_point(t_fractal *m);
+void					move(int keycode, t_env *e);
+void					ft_mandelbrot(t_fractal *m);
 int						choice(char *arg, t_env *e);
+int						mmove(int x, int y, t_env *e);
 void					put_pixel(t_point *p, t_env *e);
 int						key_hook(int keycode, t_env *e);
+void					zoom(t_env *e, int x, int y, float size);
+void					draw(t_env *e,void (*fractal)(t_fractal *m));
 int						mouse_hook(int button, int x, int y, t_env *e);
 int						mlx_hook(void *win_ptr, int x_event, int x_mask,
 						int (*funct)(), void *param);

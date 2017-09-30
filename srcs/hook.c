@@ -8,10 +8,10 @@ int		quit(t_env *e)
 
 void	stop_mov(t_env *e)
 {
-	if (e->m.type == JULIA)
-		e->m.type = 0;
-	else if (e->m.type == 0)
-		e->m.type = JULIA;
+	if (e->m.stop == 0)
+		e->m.stop = 1;
+	else if (e->m.stop == 1)
+		e->m.stop = 0;
 }
 
 int		key_hook(int keycode, t_env *e)
@@ -22,20 +22,19 @@ int		key_hook(int keycode, t_env *e)
 		change_color(e);
 	if (keycode == 49)
 		stop_mov(e);
+	if (keycode >= 123 && keycode <= 126)
+		move(keycode, e);
 	return (0);
 }
 
 int		mouse_hook(int button, int x, int y, t_env *e)
 {
+	if (button == 4)
+		zoom(e, x, y, 1.1);
+	else if (button == 5)
+		zoom(e, x, y, 0.9);
 	ft_putnbr(button);
-	ft_putendl("");
-	//if (button == 4)
-	//	zoom(e);
-	//else if (button == 5)
-	//	zoom(e);
-	(void)x;
-	(void)y;
-	(void)e;
+	redraw(e);
 	return (0);
 }
 
@@ -45,16 +44,14 @@ int		expose_hook(t_env *e)
 	return (0);
 }
 
-int		move(int x, int y, t_env *e)
+int		mmove(int x, int y, t_env *e)
 {
-	if (e->m.type == JULIA)
-	{
-		e->m.cr = 0.004 * (-x + WIDTH / 2);
-		e->m.ci = 0.002 * (-y + HEIGHT / 2);
-		mlx_clear_window(e->mlx, e->win);
-		init_point(&e->m.p);
-		draw(e, ft_julia);
-	}
+	if (e->m.stop)
+		if (e->m.type == JULIA)
+		{
+			e->m.cr = 0.004 * (-x + WIDTH / 2);
+			e->m.ci = 0.002 * (-y + HEIGHT / 2);
+			draw(e, ft_julia);
+		}
 	return (0);
 }
-
