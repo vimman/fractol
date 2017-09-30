@@ -3,7 +3,7 @@
 void	put_pixel(t_point *p, t_env *e)
 {
 	if (p->y < HEIGHT && p->x < WIDTH &&
-		p->y >= 0 && p->x >= 0)
+			p->y >= 0 && p->x >= 0)
 		e->data[p->y * WIDTH + p->x] = p->color;
 }
 
@@ -36,7 +36,7 @@ int		main(int argc, char **argv)
 	if (argc < 2 || argc > 2)
 		return (-1);
 	if (!ft_strcmp(argv[1], "/dev/random") ||
-		!ft_strcmp(argv[1], "/dev/urandom"))
+			!ft_strcmp(argv[1], "/dev/urandom"))
 		return (-1);
 	if (argc == 2)
 	{

@@ -27,7 +27,12 @@ int		key_hook(int keycode, t_env *e)
 
 int		mouse_hook(int button, int x, int y, t_env *e)
 {
-	(void)button;
+	ft_putnbr(button);
+	ft_putendl("");
+	//if (button == 4)
+	//	zoom(e);
+	//else if (button == 5)
+	//	zoom(e);
 	(void)x;
 	(void)y;
 	(void)e;

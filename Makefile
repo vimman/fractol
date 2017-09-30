@@ -2,7 +2,7 @@ NAME = fractol
 
 CC = clang
 
-CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address -Ofast
 
 LFLAGS = -Llibft -lft -L$(MINILIB) -lmlx
 

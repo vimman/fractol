@@ -7,7 +7,7 @@ void	mandel_init(t_fractal *m)
 	m->x2 = 2.1;
 	m->y1 = -2.1;
 	m->y2 = 2.1;
-	m->zoom = 2.57;
+	m->zoom = 1;
 	m->it_max = 42;
 	m->img_x = HEIGHT + m->zoom;
 	m->img_y = HEIGHT + m->zoom;

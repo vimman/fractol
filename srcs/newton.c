@@ -6,8 +6,8 @@ void	newton_init(t_fractal *m)
 	m->x2 = 1;
 	m->y1 = -1;
 	m->y2 = 1;
-	m->zoom = 22;
-	m->it_max = 41;
+	m->zoom = 0.1;
+	m->it_max = 17;
 	m->img_x = WIDTH;
 	m->img_y = HEIGHT;
 	m->color = 3;
