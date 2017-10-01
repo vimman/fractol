@@ -8,6 +8,7 @@
 # include <math.h>
 # include "libft.h"
 # include "mlx.h"
+#include <stdio.h>		//printf();
 
 # define WIDTH 1280
 # define HEIGHT 800
@@ -77,6 +78,7 @@ typedef struct			s_env
 	t_fractal	m;
 }						t_env;
 
+void					reset(t_env *e);
 void					set(t_env *e);
 int						quit(t_env *e);
 void					redraw(t_env *e);
@@ -99,6 +101,7 @@ int						choice(char *arg, t_env *e);
 int						mmove(int x, int y, t_env *e);
 void					put_pixel(t_point *p, t_env *e);
 int						key_hook(int keycode, t_env *e);
+int						drag(int button, int x, int y, t_env *e);
 void					zoom(t_env *e, int x, int y, float ratio);
 void					draw(t_env *e,void (*fractal)(t_fractal *m));
 int						mouse_hook(int button, int x, int y, t_env *e);

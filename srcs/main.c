@@ -32,6 +32,16 @@ int		init(t_env *e, char *arg)
 	return (0);
 }
 
+void	reset(t_env *e)
+{
+	if (e->m.type == NEWTON)
+		choice("newton", e);
+	else if (e->m.type == MANDEL)
+		choice("mandelbrot", e);
+	else if (e->m.type == JULIA)
+		choice("julia", e);
+}
+
 int		main(int argc, char **argv)
 {
 	t_env		e;
@@ -48,6 +58,7 @@ int		main(int argc, char **argv)
 		init_img(&e);
 		choice(argv[1], &e);
 	}
+	//mlx_hook(e.win, 1, (1<<8), drag, &e);
 	mlx_hook(e.win, 6, 0, mmove, &e);
 	mlx_hook(e.win, 17, (1L << 17), quit, &e);
 	mlx_key_hook(e.win, key_hook, &e);

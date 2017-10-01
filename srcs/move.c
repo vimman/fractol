@@ -1,4 +1,4 @@
-#include "fractol.h" 
+#include "fractol.h"
 
 static void	move_l(t_env *e)
 {
@@ -24,6 +24,26 @@ static void	move_u(t_env *e)
 	e->m.y2 *= 0.9;
 }
 
+int			drag(int button, int x, int y, t_env *e)
+{
+	int		basex;
+	int		basey;
+
+	basex = x;
+	basey = y;
+// Ca marche pas TODO
+	printf("%d\n", button);
+	printf("%d\n", x);
+	printf("%d\n", y);
+	printf("%d\n", basex);
+	printf("%d\n", basey);
+
+	e->m.x1 += (basex - x) / 10 * e->m.x1;
+	e->m.y1 += (basey - y) / 10 * e->m.y1;
+	redraw(e);
+	return (0);
+}
+
 void		move(int keycode, t_env *e)
 {
 	if (keycode == 123)
@@ -34,5 +54,4 @@ void		move(int keycode, t_env *e)
 		move_d(e);
 	else if (keycode == 126)
 		move_u(e);
-	redraw(e);
-}
+	redraw(e); }

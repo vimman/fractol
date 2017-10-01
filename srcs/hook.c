@@ -16,19 +16,23 @@ void	stop_mov(t_env *e)
 
 int		key_hook(int keycode, t_env *e)
 {
-	if (keycode == 53)
+	if (keycode == 53 || keycode == 12)
 		quit(e);
-	if (keycode == 8)
+	else if (keycode == 8)
 		change_color(e);
-	if (keycode == 49)
+	else if (keycode == 49)
 		stop_mov(e);
-	if (keycode >= 123 && keycode <= 126)
+	else if (keycode >= 123 && keycode <= 126)
 		move(keycode, e);
+	else if (keycode == 51)
+		reset(e);
 	return (0);
 }
 
 int		mouse_hook(int button, int x, int y, t_env *e)
 {
+	if (button == 1)
+		drag(button, x, y, e);
 	if (button == 4)
 		zoom(e, x, y, 1.1);
 	else if (button == 5)
