@@ -7,15 +7,17 @@ int		choice(char *arg, t_env *e)
 		newton_init(&e->m);
 		draw(e, ft_newton);
 	}
-	if (!ft_strcmp(arg, "julia"))
+	else if (!ft_strcmp(arg, "julia"))
 	{
 		julia_init(&e->m);
 		draw(e, ft_julia);
 	}
-	if (!ft_strcmp(arg, "mandelbrot"))
+	else if (!ft_strcmp(arg, "mandelbrot"))
 	{
 		mandel_init(&e->m);
 		draw(e, ft_mandelbrot);
 	}
+	else
+		exit(0);
 	return (0);
 }

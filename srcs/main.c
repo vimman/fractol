@@ -21,11 +21,14 @@ void	init_img(t_env *e)
 	e->data = (int *)mlx_get_data_addr(e->img, &e->bpp, &e->size, &e->endian);
 }
 
-int		init(t_env *e)
+int		init(t_env *e, char *arg)
 {
+	char	*title;
+
+	title = ft_strjoin("Fractol          o_O         ", arg);
 	if (!(e->mlx = mlx_init()))
 		return (-1);
-	e->win = mlx_new_window(e->mlx, WIDTH, HEIGHT, "win");
+	e->win = mlx_new_window(e->mlx, WIDTH, HEIGHT, title);
 	return (0);
 }
 
@@ -40,7 +43,7 @@ int		main(int argc, char **argv)
 		return (-1);
 	if (argc == 2)
 	{
-		if (init(&e) < 0)
+		if (init(&e, argv[1]) < 0)
 			return (-1);
 		init_img(&e);
 		choice(argv[1], &e);

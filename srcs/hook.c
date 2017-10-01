@@ -33,7 +33,6 @@ int		mouse_hook(int button, int x, int y, t_env *e)
 		zoom(e, x, y, 1.1);
 	else if (button == 5)
 		zoom(e, x, y, 0.9);
-	ft_putnbr(button);
 	redraw(e);
 	return (0);
 }

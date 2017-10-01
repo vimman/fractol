@@ -48,7 +48,6 @@ typedef struct			s_fractal
 	double	x2;
 	double	y1;
 	double	y2;
-	double	zoom;
 	double	img_x;
 	double	img_y;
 	double	it_max;
@@ -57,6 +56,7 @@ typedef struct			s_fractal
 	double	zr;
 	double	zi;
 	double	tmp;
+	double	zoom;
 	double	zoom_x;
 	double	zoom_y;
 }						t_fractal;
@@ -79,7 +79,6 @@ typedef struct			s_env
 
 void					set(t_env *e);
 int						quit(t_env *e);
-int						init(t_env *e);
 void					redraw(t_env *e);
 void					init_img(t_env *e);
 void					color_1(t_fractal *m);
@@ -89,6 +88,7 @@ void					ft_julia(t_fractal *m);
 void					init_point(t_point *p);
 void					ft_newton(t_fractal *m);
 void					julia_init(t_fractal *j);
+int						init(t_env *e, char *arg);
 void					mandel_init(t_fractal *m);
 void					color_point(t_fractal *m);
 void					newton_init(t_fractal *m);
@@ -99,7 +99,7 @@ int						choice(char *arg, t_env *e);
 int						mmove(int x, int y, t_env *e);
 void					put_pixel(t_point *p, t_env *e);
 int						key_hook(int keycode, t_env *e);
-void					zoom(t_env *e, int x, int y, float size);
+void					zoom(t_env *e, int x, int y, float ratio);
 void					draw(t_env *e,void (*fractal)(t_fractal *m));
 int						mouse_hook(int button, int x, int y, t_env *e);
 int						mlx_hook(void *win_ptr, int x_event, int x_mask,
