@@ -3,13 +3,13 @@
 void	mandel_init(t_fractal *m)
 {
 	m->type = MANDEL;
-	m->x1 = -2.1;
-	m->x2 = 2.1;
+	m->x1 = -3.36;
+	m->x2 = 3.36;
 	m->y1 = -2.1;
 	m->y2 = 2.1;
 	m->zoom = 1;
 	m->it_max = 42;
-	m->img_x = HEIGHT + m->zoom;
+	m->img_x = WIDTH + m->zoom;
 	m->img_y = HEIGHT + m->zoom;
 	m->zoom_x = m->zoom * m->img_x / (m->x2 - m->x1);
 	m->zoom_y = m->zoom * m->img_y / (m->y2 - m->y1);

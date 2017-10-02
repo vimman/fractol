@@ -2,45 +2,56 @@
 
 static void	move_l(t_env *e)
 {
-	e->m.x1 *= 0.9;
-	e->m.x2 *= 0.9;
+	e->m.x1 -= 0.1 / e->m.zoom;
+	e->m.x2 -= 0.1 / e->m.zoom;
 }
 
 static void	move_r(t_env *e)
 {
-	e->m.x1 *= 1.1;
-	e->m.x2 *= 1.1;
+	e->m.x1 += 0.1 / e->m.zoom;
+	e->m.x2 += 0.1 / e->m.zoom;
 }
 
 static void	move_d(t_env *e)
 {
-	e->m.y1 *= 1.1;
-	e->m.y2 *= 1.1;
+	e->m.y1 += 0.1 / e->m.zoom;
+	e->m.y2 += 0.1 / e->m.zoom;
 }
 
 static void	move_u(t_env *e)
 {
-	e->m.y1 *= 0.9;
-	e->m.y2 *= 0.9;
+	e->m.y1 -= 0.1 / e->m.zoom;
+	e->m.y2 -= 0.1 / e->m.zoom;
 }
 
 int			drag(int button, int x, int y, t_env *e)
 {
-	int		basex;
-	int		basey;
-
-	basex = x;
-	basey = y;
+//	e->m.basex = x;
+//	e->m.basey = y;
 // Ca marche pas TODO
-	printf("%d\n", button);
-	printf("%d\n", x);
-	printf("%d\n", y);
-	printf("%d\n", basex);
-	printf("%d\n", basey);
+	printf("drag\n");
+	printf("button\t: %d\n", button);
+	printf("x\t: %d\n", x);
+	printf("y\t: %d\n", y);
+	//printf("basex\t: %d\n", e->m.basex);
+	//printf("basey\t: %d\n", e->m.basey);
 
-	e->m.x1 += (basex - x) / 10 * e->m.x1;
-	e->m.y1 += (basey - y) / 10 * e->m.y1;
+//	e->m.x1 += (e->m.basex - x) / 10 * e->m.x1;
+//	e->m.y1 += (e->m.basey - y) / 10 * e->m.y1;
 	redraw(e);
+	return (0);
+}
+
+int			dmov(int button, int x, int y, t_env *e)
+{
+	(void)e;
+	printf("dmov\n");
+	printf("button\t: %d\n", button);
+	printf("x\t: %d\n", x);
+	printf("y\t: %d\n", y);
+	//e->m.x1 += (e->m.basex - x) / 10 * e->m.x1;
+	//e->m.y1 += (e->m.basey - y) / 10 * e->m.y1;
+	//redraw(e);
 	return (0);
 }
 
@@ -54,4 +65,5 @@ void		move(int keycode, t_env *e)
 		move_d(e);
 	else if (keycode == 126)
 		move_u(e);
-	redraw(e); }
+	redraw(e);
+}

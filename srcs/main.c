@@ -29,6 +29,7 @@ int		init(t_env *e, char *arg)
 	if (!(e->mlx = mlx_init()))
 		return (-1);
 	e->win = mlx_new_window(e->mlx, WIDTH, HEIGHT, title);
+	free(title);
 	return (0);
 }
 
@@ -48,9 +49,6 @@ int		main(int argc, char **argv)
 
 	if (argc < 2 || argc > 2)
 		return (-1);
-	if (!ft_strcmp(argv[1], "/dev/random") ||
-			!ft_strcmp(argv[1], "/dev/urandom"))
-		return (-1);
 	if (argc == 2)
 	{
 		if (init(&e, argv[1]) < 0)
@@ -58,7 +56,8 @@ int		main(int argc, char **argv)
 		init_img(&e);
 		choice(argv[1], &e);
 	}
-	//mlx_hook(e.win, 1, (1<<8), drag, &e);
+//	mlx_hook(e.win, KeyPress, KeyPressMask, drag, &e); 
+
 	mlx_hook(e.win, 6, 0, mmove, &e);
 	mlx_hook(e.win, 17, (1L << 17), quit, &e);
 	mlx_key_hook(e.win, key_hook, &e);

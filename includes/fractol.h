@@ -6,6 +6,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <math.h>
+# include <X.h>
 # include "libft.h"
 # include "mlx.h"
 #include <stdio.h>		//printf();
@@ -60,6 +61,10 @@ typedef struct			s_fractal
 	double	zoom;
 	double	zoom_x;
 	double	zoom_y;
+	double	mouse_x;
+	double	mouse_y;
+	//int		basex;
+	//int		basey;
 }						t_fractal;
 
 typedef struct			s_env
@@ -74,7 +79,7 @@ typedef struct			s_env
 	int			size;
 	int			bpp;
 	int			endian;
-	
+
 	t_fractal	m;
 }						t_env;
 
@@ -102,7 +107,7 @@ int						mmove(int x, int y, t_env *e);
 void					put_pixel(t_point *p, t_env *e);
 int						key_hook(int keycode, t_env *e);
 int						drag(int button, int x, int y, t_env *e);
-void					zoom(t_env *e, int x, int y, float ratio);
+void					zoom(t_env *e, int x, int y, double ratio);
 void					draw(t_env *e,void (*fractal)(t_fractal *m));
 int						mouse_hook(int button, int x, int y, t_env *e);
 int						mlx_hook(void *win_ptr, int x_event, int x_mask,

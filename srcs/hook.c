@@ -31,8 +31,6 @@ int		key_hook(int keycode, t_env *e)
 
 int		mouse_hook(int button, int x, int y, t_env *e)
 {
-	if (button == 1)
-		drag(button, x, y, e);
 	if (button == 4)
 		zoom(e, x, y, 1.1);
 	else if (button == 5)
