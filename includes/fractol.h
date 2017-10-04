@@ -9,7 +9,9 @@
 # include <X.h>
 # include "libft.h"
 # include "mlx.h"
-#include <stdio.h>		//printf();
+# include "mlx_keys.h"
+
+#include <stdio.h>																	//printf();
 
 # define WIDTH 1280
 # define HEIGHT 800

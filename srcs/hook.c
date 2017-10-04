@@ -16,15 +16,17 @@ void	stop_mov(t_env *e)
 
 int		key_hook(int keycode, t_env *e)
 {
-	if (keycode == 53 || keycode == 12)
+	if (keycode == KEY_ESCAPE || keycode == KEY_Q)
 		quit(e);
-	else if (keycode == 8)
+	else if (keycode == KEY_C)
 		change_color(e);
-	else if (keycode == 49)
+	else if (keycode == KEY_SPACEBAR)
 		stop_mov(e);
-	else if (keycode >= 123 && keycode <= 126)
+	else if (keycode == KEY_H || keycode == KEY_J ||
+			 keycode == KEY_K || keycode == KEY_L ||
+			 (keycode >= 123 && keycode <= 126))
 		move(keycode, e);
-	else if (keycode == 51)
+	else if (keycode == KEY_BACKSPACE)
 		reset(e);
 	return (0);
 }
@@ -42,17 +44,5 @@ int		mouse_hook(int button, int x, int y, t_env *e)
 int		expose_hook(t_env *e)
 {
 	(void)e;
-	return (0);
-}
-
-int		mmove(int x, int y, t_env *e)
-{
-	if (e->m.stop)
-		if (e->m.type == JULIA)
-		{
-			e->m.cr = 0.004 * (-x + WIDTH / 2);
-			e->m.ci = 0.002 * (-y + HEIGHT / 2);
-			draw(e, ft_julia);
-		}
 	return (0);
 }

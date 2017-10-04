@@ -2,26 +2,26 @@
 
 static void	move_l(t_env *e)
 {
-	e->m.x1 -= 0.1 / e->m.zoom;
-	e->m.x2 -= 0.1 / e->m.zoom;
+	e->m.x1 -= 0.1;
+	e->m.x2 -= 0.1;
 }
 
 static void	move_r(t_env *e)
 {
-	e->m.x1 += 0.1 / e->m.zoom;
-	e->m.x2 += 0.1 / e->m.zoom;
+	e->m.x1 += 0.1;
+	e->m.x2 += 0.1;
 }
 
 static void	move_d(t_env *e)
 {
-	e->m.y1 += 0.1 / e->m.zoom;
-	e->m.y2 += 0.1 / e->m.zoom;
+	e->m.y1 += 0.1;
+	e->m.y2 += 0.1;
 }
 
 static void	move_u(t_env *e)
 {
-	e->m.y1 -= 0.1 / e->m.zoom;
-	e->m.y2 -= 0.1 / e->m.zoom;
+	e->m.y1 -= 0.1;
+	e->m.y2 -= 0.1;
 }
 
 int			drag(int button, int x, int y, t_env *e)
@@ -57,13 +57,25 @@ int			dmov(int button, int x, int y, t_env *e)
 
 void		move(int keycode, t_env *e)
 {
-	if (keycode == 123)
+	if (keycode == KEY_H)
 		move_l(e);
-	else if (keycode == 124)
+	else if (keycode == KEY_L)
 		move_r(e);
-	else if (keycode == 125)
+	else if (keycode == KEY_J)
 		move_d(e);
-	else if (keycode == 126)
+	else if (keycode == KEY_K)
 		move_u(e);
 	redraw(e);
+}
+
+int		mmove(int x, int y, t_env *e)
+{
+	if (e->m.stop)
+		if (e->m.type == JULIA)
+		{
+			e->m.cr = 0.004 * (-x + WIDTH / 2);
+			e->m.ci = 0.002 * (-y + HEIGHT / 2);
+			draw(e, ft_julia);
+		}
+	return (0);
 }
