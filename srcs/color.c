@@ -1,5 +1,10 @@
 #include "fractol.h"
 
+int		rgb2int(unsigned char r, unsigned char g, unsigned char b)
+{
+	return (r << 16 | g << 8 | b);
+}
+
 void	color_1(t_fractal *m)
 {
 	if (m->i == m->it_max)
@@ -40,6 +45,14 @@ void	color_5(t_fractal *m)
 		m->p.color = m->i * BLUE;
 }
 
+void	color_6(t_fractal *m)
+{
+	if (m->i == m->it_max)
+		m->p.color = rgb2int(0, 0, 0);
+	else
+		m->p.color = m->i * rgb2int(255, 150, 0) / (m->zi * m->zr / 10);
+}
+
 void	color_point(t_fractal *m)
 {
 	if (m->color == 1)
@@ -52,11 +65,13 @@ void	color_point(t_fractal *m)
 		color_4(m);
 	else if (m->color == 5)
 		color_5(m);
+	else if (m->color == 6)
+		color_6(m);
 }
 
 void	change_color(t_env *e)
 {
-	if (e->m.color < 5)
+	if (e->m.color < 6)
 		e->m.color++;
 	else
 		e->m.color = 1;

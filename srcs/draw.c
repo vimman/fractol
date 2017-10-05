@@ -1,6 +1,6 @@
 #include "fractol.h"
 
-void	draw(t_env *e,void (*fractal)(t_fractal *m))
+void	draw(t_env *e, void (*fractal)(t_fractal *m))
 {
 	mlx_clear_window(e->mlx, e->win);
 	init_point(&e->m.p);
@@ -18,11 +18,13 @@ void	draw(t_env *e,void (*fractal)(t_fractal *m))
 }
 
 void	redraw(t_env *e)
-{	
+{
 	if (e->m.type == JULIA)
 		draw(e, ft_julia);
 	else if (e->m.type == MANDEL)
 		draw(e, ft_mandelbrot);
 	else if (e->m.type == NEWTON)
 		draw(e, ft_newton);
+	else if (e->m.type == BURN)
+		draw(e, ft_burn);
 }

@@ -56,8 +56,7 @@ int		main(int argc, char **argv)
 		init_img(&e);
 		choice(argv[1], &e);
 	}
-//	mlx_hook(e.win, KeyPress, KeyPressMask, drag, &e); 
-
+//	mlx_hook(e.win, KeyPress, KeyPressMask, drag, &e);
 	mlx_hook(e.win, 6, 0, mmove, &e);
 	mlx_hook(e.win, 17, (1L << 17), quit, &e);
 	mlx_key_hook(e.win, key_hook, &e);

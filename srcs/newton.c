@@ -25,7 +25,6 @@ void	ft_newton(t_fractal *m)
 	{
 		m->cr = m->zr;
 		m->ci = m->zi;
-
 		m->tmp = (m->zr * m->zr + m->zi * m->zi)
 			* (m->zr * m->zr + m->zi * m->zi);
 		m->zr = (2 * m->zr * m->tmp + m->zr * m->zr

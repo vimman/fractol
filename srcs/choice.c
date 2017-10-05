@@ -17,6 +17,11 @@ int		choice(char *arg, t_env *e)
 		mandel_init(&e->m);
 		draw(e, ft_mandelbrot);
 	}
+	else if (!ft_strcmp(arg, "burningship"))
+	{
+		burn_init(&e->m);
+		draw(e, ft_burn);
+	}
 	else
 		exit(0);
 	return (0);

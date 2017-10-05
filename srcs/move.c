@@ -35,7 +35,6 @@ int			drag(int button, int x, int y, t_env *e)
 	printf("y\t: %d\n", y);
 	//printf("basex\t: %d\n", e->m.basex);
 	//printf("basey\t: %d\n", e->m.basey);
-
 //	e->m.x1 += (e->m.basex - x) / 10 * e->m.x1;
 //	e->m.y1 += (e->m.basey - y) / 10 * e->m.y1;
 	redraw(e);
@@ -68,7 +67,7 @@ void		move(int keycode, t_env *e)
 	redraw(e);
 }
 
-int		mmove(int x, int y, t_env *e)
+int			mmove(int x, int y, t_env *e)
 {
 	if (e->m.stop)
 		if (e->m.type == JULIA)

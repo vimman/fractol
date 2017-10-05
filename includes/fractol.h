@@ -26,8 +26,9 @@
 # define JULIA	1
 # define MANDEL	2
 # define NEWTON	3
+# define BURN	4
 
-typedef union			s_col
+typedef union			u_col
 {
 	char	c[4];
 	int		co;
@@ -85,6 +86,11 @@ typedef struct			s_env
 	t_fractal	m;
 }						t_env;
 
+void					change(int keycode, t_env *e);
+void					init_triangle(t_fractal *m);
+void					triangle(t_fractal *m);
+void					burn_init(t_fractal *m);
+void					ft_burn(t_fractal *m);
 void					reset(t_env *e);
 void					set(t_env *e);
 int						quit(t_env *e);
@@ -110,7 +116,7 @@ void					put_pixel(t_point *p, t_env *e);
 int						key_hook(int keycode, t_env *e);
 int						drag(int button, int x, int y, t_env *e);
 void					zoom(t_env *e, int x, int y, double ratio);
-void					draw(t_env *e,void (*fractal)(t_fractal *m));
+void					draw(t_env *e, void (*fractal)(t_fractal *m));
 int						mouse_hook(int button, int x, int y, t_env *e);
 int						mlx_hook(void *win_ptr, int x_event, int x_mask,
 						int (*funct)(), void *param);

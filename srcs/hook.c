@@ -14,6 +14,19 @@ void	stop_mov(t_env *e)
 		e->m.stop = 0;
 }
 
+void	change(int keycode, t_env *e)
+{
+	if (keycode == KEY_1)
+		julia_init(&e->m);
+	if (keycode == KEY_2)
+		mandel_init(&e->m);
+	if (keycode == KEY_3)
+		newton_init(&e->m);
+	if (keycode == KEY_4)
+		burn_init(&e->m);
+	redraw(e);
+}
+
 int		key_hook(int keycode, t_env *e)
 {
 	if (keycode == KEY_ESCAPE || keycode == KEY_Q)
@@ -23,11 +36,13 @@ int		key_hook(int keycode, t_env *e)
 	else if (keycode == KEY_SPACEBAR)
 		stop_mov(e);
 	else if (keycode == KEY_H || keycode == KEY_J ||
-			 keycode == KEY_K || keycode == KEY_L ||
-			 (keycode >= 123 && keycode <= 126))
+			keycode == KEY_K || keycode == KEY_L ||
+			(keycode >= 123 && keycode <= 126))
 		move(keycode, e);
 	else if (keycode == KEY_BACKSPACE)
 		reset(e);
+	else if (keycode >= KEY_1 && keycode <= KEY_0)
+		change(keycode, e);
 	return (0);
 }
 

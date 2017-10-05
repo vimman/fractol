@@ -1,11 +1,7 @@
+/*OSX_KEYCODES*/
 
-
-		/*OSX_KEYCODES*/
-
-
-
-#ifndef MLX_KEYS_MACOS_H
-# define MLX_KEYS_MACOS_H
+#ifndef MLX_KEYS_H
+# define MLX_KEYS_H
 
 # define KEY_ESCAPE         53
 # define KEY_F1             122
@@ -124,5 +120,5 @@
 # define KEY_PAD_ADD        69
 # define KEY_PAD_ENTER      76
 # define KEY_PAD_DOT        65
- 
+
 #endif

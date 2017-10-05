@@ -1,12 +1,8 @@
-
-
-		/*LINUX_KEYCODES*/
-
-
+/*LINUX_KEYCODES*/
 
 #ifndef MLX_KEYS_H
 # define MLX_KEYS_H
- 
+
 # define KEY_ESCAPE         65307
 # define KEY_F1             65470
 # define KEY_F2             65471
@@ -118,5 +114,5 @@
 # define KEY_PAD_ENTER      65421
 # define KEY_PAD_DOT        65439
 # define KEY_PAD_DELETE     65439
- 
+
 #endif
