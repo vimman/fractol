@@ -5,6 +5,19 @@ int		rgb2int(unsigned char r, unsigned char g, unsigned char b)
 	return (r << 16 | g << 8 | b);
 }
 
+int		sinwave(t_col *c, int i)
+{
+	int	r;
+	int	g;
+	int	b;
+
+
+	r = sin(c->freq1 * i + c->phas1) * c->width + c->center;
+	g = sin(c->freq2 * i + c->phas2) * c->width + c->center;
+	b = sin(c->freq3 * i + c->phas3) * c->width + c->center;
+	return (rgb2int(r, g, b));
+}
+
 void	color_1(t_fractal *m)
 {
 	if (m->i == m->it_max)
@@ -53,6 +66,24 @@ void	color_6(t_fractal *m)
 		m->p.color = m->i * rgb2int(255, 150, 0) / (m->zi * m->zr / 10);
 }
 
+void	color_7(t_fractal *m)
+{
+	t_col	c;
+
+	c.freq1 = 0.6;
+	c.freq2 = 0.6;
+	c.freq3 = 0.6;
+	c.phas1 = 4;
+	c.phas2 = 6;
+	c.phas3 = 8;
+	c.center = 200;
+	c.width = 55;
+	if (m->i == m->it_max)
+		m->p.color = 0;
+	else
+		m->p.color = sinwave(&c, m->i);
+}
+
 void	color_point(t_fractal *m)
 {
 	if (m->color == 1)
@@ -67,11 +98,13 @@ void	color_point(t_fractal *m)
 		color_5(m);
 	else if (m->color == 6)
 		color_6(m);
+	else if (m->color == 7)
+		color_7(m);
 }
 
 void	change_color(t_env *e)
 {
-	if (e->m.color < 6)
+	if (e->m.color < 7)
 		e->m.color++;
 	else
 		e->m.color = 1;

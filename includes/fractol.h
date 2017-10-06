@@ -28,10 +28,19 @@
 # define NEWTON	3
 # define BURN	4
 
-typedef union			u_col
+typedef struct			s_col
 {
-	char	c[4];
-	int		co;
+	double	freq1;
+	double	freq2;
+	double	freq3;
+	double	phas1;
+	double	phas2;
+	double	phas3;
+	int		center;
+	int		width;
+	int		len;
+
+
 }						t_col;
 
 typedef struct			s_point
