@@ -6,6 +6,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <math.h>
+# include <pthread.h>
 # include <X.h>
 # include "libft.h"
 # include "mlx.h"
@@ -39,8 +40,6 @@ typedef struct			s_col
 	int		center;
 	int		width;
 	int		len;
-
-
 }						t_col;
 
 typedef struct			s_point
@@ -51,10 +50,15 @@ typedef struct			s_point
 	int		color;
 }						t_point;
 
+typedef struct			s_thread
+{
+}						t_thread;
+
 typedef struct			s_fractal
 {
 	int		type;
 	int		stop;
+	int		text;
 	int		color;
 	t_point	p;
 	long	i;
@@ -92,40 +96,43 @@ typedef struct			s_env
 	int			bpp;
 	int			endian;
 
-	t_fractal	m;
+	t_fractal	f;
 }						t_env;
 
+void					text(t_env *e);
+void					tg_text(t_env *e);
+void					iter(int keycode, t_env *e);
 void					change(int keycode, t_env *e);
-void					init_triangle(t_fractal *m);
-void					triangle(t_fractal *m);
-void					burn_init(t_fractal *m);
-void					ft_burn(t_fractal *m);
+void					init_triangle(t_fractal *f);
+void					triangle(t_fractal *f);
+void					burn_init(t_fractal *f);
+void					ft_burn(t_fractal *f);
 void					reset(t_env *e);
 void					set(t_env *e);
 int						quit(t_env *e);
 void					redraw(t_env *e);
 void					init_img(t_env *e);
-void					color_1(t_fractal *m);
+void					color_1(t_fractal *f);
 int						expose_hook(t_env *e);
 void					change_color(t_env *e);
-void					ft_julia(t_fractal *m);
+void					ft_julia(t_fractal *f);
 void					init_point(t_point *p);
-void					ft_newton(t_fractal *m);
+void					ft_newton(t_fractal *f);
 void					julia_init(t_fractal *j);
 int						init(t_env *e, char *arg);
-void					mandel_init(t_fractal *m);
-void					color_point(t_fractal *m);
-void					newton_init(t_fractal *m);
-void					color_point(t_fractal *m);
+void					mandel_init(t_fractal *f);
+void					color_point(t_fractal *f);
+void					newton_init(t_fractal *f);
+void					color_point(t_fractal *f);
 void					move(int keycode, t_env *e);
-void					ft_mandelbrot(t_fractal *m);
+void					ft_mandelbrot(t_fractal *f);
 int						choice(char *arg, t_env *e);
 int						mmove(int x, int y, t_env *e);
 void					put_pixel(t_point *p, t_env *e);
 int						key_hook(int keycode, t_env *e);
 int						drag(int button, int x, int y, t_env *e);
 void					zoom(t_env *e, int x, int y, double ratio);
-void					draw(t_env *e, void (*fractal)(t_fractal *m));
+void					draw(t_env *e, void (*fractal)(t_fractal *f));
 int						mouse_hook(int button, int x, int y, t_env *e);
 int						mlx_hook(void *win_ptr, int x_event, int x_mask,
 						int (*funct)(), void *param);

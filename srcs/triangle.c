@@ -1,9 +1,9 @@
 #include "fractol.h"
 
-void	init_triangle(t_fractal *m)
+void	init_triangle(t_fractal *f)
 {
 }
 
-void	triangle(t_fractal *m)
+void	triangle(t_fractal *f)
 {
 }

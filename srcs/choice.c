@@ -4,22 +4,22 @@ int		choice(char *arg, t_env *e)
 {
 	if (!ft_strcmp(arg, "newton"))
 	{
-		newton_init(&e->m);
+		newton_init(&e->f);
 		draw(e, ft_newton);
 	}
 	else if (!ft_strcmp(arg, "julia"))
 	{
-		julia_init(&e->m);
+		julia_init(&e->f);
 		draw(e, ft_julia);
 	}
 	else if (!ft_strcmp(arg, "mandelbrot"))
 	{
-		mandel_init(&e->m);
+		mandel_init(&e->f);
 		draw(e, ft_mandelbrot);
 	}
 	else if (!ft_strcmp(arg, "burningship"))
 	{
-		burn_init(&e->m);
+		burn_init(&e->f);
 		draw(e, ft_burn);
 	}
 	else

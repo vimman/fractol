@@ -35,12 +35,14 @@ int		init(t_env *e, char *arg)
 
 void	reset(t_env *e)
 {
-	if (e->m.type == NEWTON)
+	if (e->f.type == NEWTON)
 		choice("newton", e);
-	else if (e->m.type == MANDEL)
+	else if (e->f.type == MANDEL)
 		choice("mandelbrot", e);
-	else if (e->m.type == JULIA)
+	else if (e->f.type == JULIA)
 		choice("julia", e);
+	else if (e->f.type == BURN)
+		choice("burningship", e);
 }
 
 int		main(int argc, char **argv)

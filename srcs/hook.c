@@ -8,22 +8,22 @@ int		quit(t_env *e)
 
 void	stop_mov(t_env *e)
 {
-	if (e->m.stop == 0)
-		e->m.stop = 1;
-	else if (e->m.stop == 1)
-		e->m.stop = 0;
+	if (e->f.stop == 0)
+		e->f.stop = 1;
+	else if (e->f.stop == 1)
+		e->f.stop = 0;
 }
 
 void	change(int keycode, t_env *e)
 {
 	if (keycode == KEY_1)
-		julia_init(&e->m);
+		julia_init(&e->f);
 	if (keycode == KEY_2)
-		mandel_init(&e->m);
+		mandel_init(&e->f);
 	if (keycode == KEY_3)
-		newton_init(&e->m);
+		newton_init(&e->f);
 	if (keycode == KEY_4)
-		burn_init(&e->m);
+		burn_init(&e->f);
 	redraw(e);
 }
 
@@ -43,6 +43,10 @@ int		key_hook(int keycode, t_env *e)
 		reset(e);
 	else if (keycode >= KEY_1 && keycode <= KEY_0)
 		change(keycode, e);
+	else if (keycode == KEY_OPEN_BRACKET || keycode == KEY_CLOSE_BRACKET)
+		iter(keycode, e);
+	else if (keycode == KEY_T)
+		tg_text(e);
 	return (0);
 }
 
