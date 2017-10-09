@@ -11,7 +11,7 @@ DIR = srcs
 LIB = lib
 
 SRCS = main.c hook.c julia.c mandelbrot.c newton.c color.c choice.c zoom.c	\
-	   draw.c move.c burn.c text.c
+	   draw.c move.c burn.c text.c usage.c
 
 SRC = $(addprefix $(DIR)/,$(SRCS))
 

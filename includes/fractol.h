@@ -79,6 +79,8 @@ typedef struct			s_fractal
 	double	zoom_y;
 	double	mouse_x;
 	double	mouse_y;
+	double	offset_x;
+	double	offset_y;
 	//int		basex;
 	//int		basey;
 }						t_fractal;
@@ -99,6 +101,8 @@ typedef struct			s_env
 	t_fractal	f;
 }						t_env;
 
+void					hooks(t_env *e);
+void					usage(void);
 void					text(t_env *e);
 void					tg_text(t_env *e);
 void					iter(int keycode, t_env *e);

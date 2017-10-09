@@ -14,7 +14,7 @@ void	mandel_init(t_fractal *f)
 	f->img_y = HEIGHT + f->zoom;
 	f->zoom_x = f->zoom * f->img_x / (f->x2 - f->x1);
 	f->zoom_y = f->zoom * f->img_y / (f->y2 - f->y1);
-	f->color = 2;
+	f->color = 9;
 	init_point(&f->p);
 }
 

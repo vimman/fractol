@@ -23,6 +23,6 @@ int		choice(char *arg, t_env *e)
 		draw(e, ft_burn);
 	}
 	else
-		exit(0);
+		usage();
 	return (0);
 }

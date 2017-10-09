@@ -5,12 +5,11 @@ int		rgb2int(unsigned char r, unsigned char g, unsigned char b)
 	return (r << 16 | g << 8 | b);
 }
 
-int		sinwave(t_col *c, int i)
+int		sinwave(t_col *c, double i)
 {
 	int	r;
 	int	g;
 	int	b;
-
 
 	r = sin(c->freq1 * i + c->phas1) * c->width + c->center;
 	g = sin(c->freq2 * i + c->phas2) * c->width + c->center;
@@ -69,24 +68,30 @@ void	color_6(t_fractal *f)
 void	color_7(t_fractal *f)
 {
 	t_col	c;
+	double	zn;
+	double	continuous_index;
 
-	c.freq1 = 0.6;
-	c.freq2 = 0.6;
-	c.freq3 = 0.6;
+	c.freq1 = 0.1;
+	c.freq2 = 0.1;
+	c.freq3 = 0.1;
 	c.phas1 = 4;
 	c.phas2 = 6;
 	c.phas3 = 8;
 	c.center = 200;
 	c.width = 55;
+	zn = sqrt(f->zr * f->zr + f->zi * f->zi);
+	continuous_index = f->i + 1 + (log(2) / zn) / log(2);
 	if (f->i == f->it_max)
 		f->p.color = 0;
 	else
-		f->p.color = sinwave(&c, f->i);
+		f->p.color = sinwave(&c, continuous_index);
 }
 
 void	color_8(t_fractal *f)
 {
 	t_col	c;
+	double	zn;
+	double	continuous_index;
 
 	c.freq1 = 0.7;
 	c.freq2 = 0.7;
@@ -96,10 +101,34 @@ void	color_8(t_fractal *f)
 	c.phas3 = 9;
 	c.center = 150;
 	c.width = 100;
+	zn = sqrt(f->zr * f->zr - f->zi * f->zi);
+	continuous_index = f->i + 1 - (log(2) / zn) / log(2);
 	if (f->i == f->it_max)
 		f->p.color = 0;
 	else
-		f->p.color = sinwave(&c, f->i);
+		f->p.color = sinwave(&c, continuous_index);
+}
+
+void	color_9(t_fractal *f)
+{
+	t_col	c;
+	double	zn;
+	double	continuous_index;
+
+	c.freq1 = 0.07;
+	c.freq2 = 0.07;
+	c.freq3 = 0.07;
+	c.phas1 = 7;
+	c.phas2 = 9;
+	c.phas3 = 11;
+	c.center = 200;
+	c.width = 55;
+	zn = sqrt(f->zr * f->zr + f->zi * f->zi);
+	continuous_index = f->i + 1 + (log(2) / zn) / log(2);
+	if (f->i == f->it_max)
+		f->p.color = 0;
+	else
+		f->p.color = sinwave(&c, continuous_index);
 }
 
 void	color_point(t_fractal *f)
@@ -120,11 +149,13 @@ void	color_point(t_fractal *f)
 		color_7(f);
 	else if (f->color == 8)
 		color_8(f);
+	else if (f->color == 9)
+		color_9(f);
 }
 
 void	change_color(t_env *e)
 {
-	if (e->f.color < 8)
+	if (e->f.color < 9)
 		e->f.color++;
 	else
 		e->f.color = 1;
