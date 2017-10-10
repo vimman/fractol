@@ -3,23 +3,22 @@
 void	newton_init(t_fractal *f)
 {
 	f->text = 0;
-	f->x1 = -1;
-	f->x2 = 1;
-	f->y1 = -1;
-	f->y2 = 1;
-	f->zoom = 0.1;
+	f->x1 = -2;
+	f->x2 = 2;
+	f->y1 = -2;
+	f->y2 = 2;
 	f->it_max = 17;
-	f->img_x = WIDTH;
-	f->img_y = HEIGHT;
 	f->color = 3;
+	f->n1 = 3;
+	f->n2 = 3;
 	f->type = NEWTON;
 	init_point(&f->p);
 }
 
 void	ft_newton(t_fractal *f)
 {
-	f->zr = (f->p.x - WIDTH / 2) / (f->zoom * WIDTH);
-	f->zi = (f->p.y - HEIGHT / 2) / (f->zoom * HEIGHT);
+	f->zr = f->p.x * (f->x2 - f->x1) / WIDTH + f->x1;
+	f->zi = f->p.y * (f->y2 - f->y1) / HEIGHT + f->y1;
 	f->i = 0;
 	f->tmp = 1.0;
 	while (f->tmp > 0.000001 && ++f->i < f->it_max)
@@ -29,8 +28,8 @@ void	ft_newton(t_fractal *f)
 		f->tmp = (f->zr * f->zr + f->zi * f->zi)
 			* (f->zr * f->zr + f->zi * f->zi);
 		f->zr = (2 * f->zr * f->tmp + f->zr * f->zr
-				- f->zi * f->zi) / (3.0 * f->tmp);
-		f->zi = (2 * f->zi * (f->tmp - f->cr)) / (3.0 * f->tmp);
+				- f->zi * f->zi) / (f->n1 * f->tmp);
+		f->zi = (2 * f->zi * (f->tmp - f->cr)) / (f->n2 * f->tmp);
 		f->tmp = (f->zr - f->cr) * (f->zr - f->cr) *
 			(f->zi - f->ci) / (f->zi - f->ci);
 	}

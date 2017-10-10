@@ -8,20 +8,15 @@ void	mandel_init(t_fractal *f)
 	f->x2 = 3.36;
 	f->y1 = -2.1;
 	f->y2 = 2.1;
-	f->zoom = 1;
 	f->it_max = 42;
-	f->img_x = WIDTH + f->zoom;
-	f->img_y = HEIGHT + f->zoom;
-	f->zoom_x = f->zoom * f->img_x / (f->x2 - f->x1);
-	f->zoom_y = f->zoom * f->img_y / (f->y2 - f->y1);
 	f->color = 9;
 	init_point(&f->p);
 }
 
 void	ft_mandelbrot(t_fractal *f)
 {
-	f->cr = f->p.x / f->zoom_x + f->x1;
-	f->ci = f->p.y / f->zoom_y + f->y1;
+	f->cr = f->p.x * (f->x2 - f->x1) / WIDTH + f->x1;
+	f->ci = f->p.y * (f->y2 - f->y1) / HEIGHT + f->y1;
 	f->zr = 0;
 	f->zi = 0;
 	f->i = -1;

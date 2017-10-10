@@ -52,6 +52,17 @@ int		key_hook(int keycode, t_env *e)
 
 int		mouse_hook(int button, int x, int y, t_env *e)
 {
+	if (button == 1)
+	{
+		double	x_delta;
+		double	y_delta;
+
+		x_delta = ((double)x / WIDTH) * (e->f.x2 - e->f.x1) + e->f.x1;
+		y_delta = ((double)y / HEIGHT) * (e->f.y2 - e->f.y1) + e->f.y1;
+
+		printf("delta de x : %f\n", x_delta);
+		printf("delta de y : %f\n", y_delta);
+	}
 	if (button == 4)
 		zoom(e, x, y, 1.1);
 	else if (button == 5)

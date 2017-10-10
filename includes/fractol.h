@@ -66,23 +66,14 @@ typedef struct			s_fractal
 	double	x2;
 	double	y1;
 	double	y2;
-	double	img_x;
-	double	img_y;
 	double	it_max;
 	double	cr;
 	double	ci;
 	double	zr;
 	double	zi;
 	double	tmp;
-	double	zoom;
-	double	zoom_x;
-	double	zoom_y;
-	double	mouse_x;
-	double	mouse_y;
-	double	offset_x;
-	double	offset_y;
-	//int		basex;
-	//int		basey;
+	double	n1;
+	double	n2;
 }						t_fractal;
 
 typedef struct			s_env

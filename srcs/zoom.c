@@ -1,44 +1,15 @@
 #include "fractol.h"
 
-double	modulus(double a, double b)
-{
-	return (sqrt(a * a + b * b));
-}
-
 void	zoom(t_env *e, int x, int y, double ratio)
 {
-	//double	x_delta;
-	//double	y_delta;
-	//x_delta = (x / (WIDTH + x));
-	//y_delta = (y / (HEIGHT + y));
-	//e->f.x1 += e->f.x1 / (WIDTH / 2);
-	//e->f.y1 += e->f.y1 / (HEIGHT / 2);
-	//e->f.x2 += e->f.x2 / (WIDTH / 2);
-	//e->f.y2 += e->f.y2 / (HEIGHT / 2);
-	//printf("zoom\t%f\n", e->f.zoom);
-	//printf("x_delta\t%f\n", x_delta);
-	(void)x;
-	(void)y;
+	double	x_curs;
+	double	y_curs;
 
-	if (e->f.type == MANDEL || e->f.type == BURN)
-	{
-		if (ratio > 1)
-		{
-			e->f.x1 = (WIDTH / 2 * e->f.x1) / (WIDTH);
-			e->f.y1 = (HEIGHT / 2 * e->f.y1) / (HEIGHT);
-			e->f.x2 = (WIDTH / 2 * e->f.x2) / (WIDTH);
-			e->f.y2 = (HEIGHT / 2 * e->f.y2) / (HEIGHT);
-		}
-		else
-		{
-			e->f.x1 = (WIDTH * e->f.x1) / (WIDTH / 2);
-			e->f.y1 = (HEIGHT * e->f.y1) / (HEIGHT / 2);
-			e->f.x2 = (WIDTH * e->f.x2) / (WIDTH / 2);
-			e->f.y2 = (HEIGHT * e->f.y2) / (HEIGHT / 2);
-		}
-	e->f.zoom_x = e->f.zoom * e->f.img_x / (e->f.x2 - e->f.x1);
-	e->f.zoom_y = e->f.zoom * e->f.img_y / (e->f.y2 - e->f.y1);
-	}
-	else 
-		e->f.zoom *= ratio;
+	x_curs = (x * (e->f.x2 - e->f.x1)) / WIDTH + e->f.x1;
+	y_curs = (y * (e->f.y2 - e->f.y1)) / HEIGHT + e->f.y1;
+
+	e->f.x1 = x_curs - (((x_curs - e->f.x1) / ratio));
+	e->f.y1 = y_curs - (((y_curs - e->f.y1) / ratio));
+	e->f.x2 = x_curs - (((x_curs - e->f.x2) / ratio));
+	e->f.y2 = y_curs - (((y_curs - e->f.y2) / ratio));
 }

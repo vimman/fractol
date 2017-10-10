@@ -2,26 +2,26 @@
 
 static void	move_l(t_env *e)
 {
-	e->f.x1 -= 0.1;
-	e->f.x2 -= 0.1;
+	e->f.x1 -= 0.01 * (e->f.x2 - e->f.x1);
+	e->f.x2 -= 0.01 * (e->f.x2 - e->f.x1);
 }
 
 static void	move_r(t_env *e)
 {
-	e->f.x1 += 0.1;
-	e->f.x2 += 0.1;
+	e->f.x1 += 0.01 * (e->f.x2 - e->f.x1);
+	e->f.x2 += 0.01 * (e->f.x2 - e->f.x1);
 }
 
 static void	move_d(t_env *e)
 {
-	e->f.y1 += 0.1;
-	e->f.y2 += 0.1;
+	e->f.y1 += 0.01 * (e->f.y2 - e->f.y1);
+	e->f.y2 += 0.01 * (e->f.y2 - e->f.y1);
 }
 
 static void	move_u(t_env *e)
 {
-	e->f.y1 -= 0.1;
-	e->f.y2 -= 0.1;
+	e->f.y1 -= 0.01 * (e->f.y2 - e->f.y1);
+	e->f.y2 -= 0.01 * (e->f.y2 - e->f.y1);
 }
 
 int			drag(int button, int x, int y, t_env *e)
@@ -70,11 +70,18 @@ void		move(int keycode, t_env *e)
 int			mmove(int x, int y, t_env *e)
 {
 	if (e->f.stop)
+	{
 		if (e->f.type == JULIA)
 		{
 			e->f.cr = 0.004 * (-x + WIDTH / 2);
 			e->f.ci = 0.002 * (-y + HEIGHT / 2);
-			draw(e, ft_julia);
 		}
+		else if (e->f.type == NEWTON)
+		{
+			e->f.n1 = (x * 6.0 / WIDTH);
+			e->f.n2 = (y * 6.0 / HEIGHT);
+		}
+	}
+	redraw(e);
 	return (0);
 }
