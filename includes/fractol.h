@@ -74,6 +74,7 @@ typedef struct			s_fractal
 	double	tmp;
 	double	n1;
 	double	n2;
+	t_col	c;
 }						t_fractal;
 
 typedef struct			s_env
@@ -92,6 +93,7 @@ typedef struct			s_env
 	t_fractal	f;
 }						t_env;
 
+void					mov_phaze(int keycode, t_env *e);
 void					hooks(t_env *e);
 void					usage(void);
 void					text(t_env *e);

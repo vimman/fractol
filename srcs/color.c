@@ -1,5 +1,22 @@
 #include "fractol.h"
 
+void	mov_phaze(int keycode, t_env *e)
+{
+	if (keycode == KEY_COMMA)
+	{
+		e->f.c.phas1 += 0.1;
+		e->f.c.phas2 += 0.2;
+		e->f.c.phas3 += 0.3;
+	}
+	else
+	{
+		e->f.c.phas1 -= 0.1;
+		e->f.c.phas2 -= 0.2;
+		e->f.c.phas3 -= 0.3;
+	}
+	redraw(e);
+}
+
 int		rgb2int(unsigned char r, unsigned char g, unsigned char b)
 {
 	return (r << 16 | g << 8 | b);
@@ -74,9 +91,9 @@ void	color_7(t_fractal *f)
 	c.freq1 = 0.1;
 	c.freq2 = 0.1;
 	c.freq3 = 0.1;
-	c.phas1 = 4;
-	c.phas2 = 6;
-	c.phas3 = 8;
+	//c.phas1 = 4;
+	//c.phas2 = 6;
+	//c.phas3 = 8;
 	c.center = 200;
 	c.width = 55;
 	zn = sqrt(f->zr * f->zr + f->zi * f->zi);
@@ -96,9 +113,9 @@ void	color_8(t_fractal *f)
 	c.freq1 = 0.7;
 	c.freq2 = 0.7;
 	c.freq3 = 0.7;
-	c.phas1 = 5;
-	c.phas2 = 6;
-	c.phas3 = 9;
+	//c.phas1 = 5;
+	//c.phas2 = 6;
+	//c.phas3 = 9;
 	c.center = 150;
 	c.width = 100;
 	zn = sqrt(f->zr * f->zr - f->zi * f->zi);
@@ -111,24 +128,23 @@ void	color_8(t_fractal *f)
 
 void	color_9(t_fractal *f)
 {
-	t_col	c;
 	double	zn;
 	double	continuous_index;
 
-	c.freq1 = 0.07;
-	c.freq2 = 0.07;
-	c.freq3 = 0.07;
-	c.phas1 = 7;
-	c.phas2 = 9;
-	c.phas3 = 11;
-	c.center = 200;
-	c.width = 55;
+	f->c.freq1 = 2.4;
+	f->c.freq2 = 2.4;
+	f->c.freq3 = 2.4;
+	//f->c.phas1 = 7;
+	//f->c.phas2 = 9;
+	//f->c.phas3 = 11;
+	f->c.center = 200;
+	f->c.width = 55;
 	zn = sqrt(f->zr * f->zr + f->zi * f->zi);
 	continuous_index = f->i + 1 + (log(2) / zn) / log(2);
 	if (f->i == f->it_max)
 		f->p.color = 0;
 	else
-		f->p.color = sinwave(&c, continuous_index);
+		f->p.color = sinwave(&f->c, continuous_index);
 }
 
 void	color_point(t_fractal *f)
