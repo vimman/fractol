@@ -47,6 +47,8 @@ int		key_hook(int keycode, t_env *e)
 		iter(keycode, e);
 	else if (keycode == KEY_T)
 		tg_text(e);
+	else if (keycode == KEY_COMMA || keycode == KEY_DOT)
+		mov_phaze(keycode, e);
 	return (0);
 }
 
