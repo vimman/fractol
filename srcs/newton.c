@@ -1,18 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   newton.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qdurot <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/11 23:54:08 by qdurot            #+#    #+#             */
+/*   Updated: 2017/10/11 23:54:09 by qdurot           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 void	newton_init(t_fractal *f)
 {
+	f->type = NEWTON;
 	f->text = 0;
+	f->it_zoom = 0;
 	f->x1 = -2;
 	f->x2 = 2;
 	f->y1 = -2;
 	f->y2 = 2;
-	f->it_max = 17;
-	f->color = 3;
+	f->it_max = 45;
+	f->color = 7;
 	f->n1 = 3;
 	f->n2 = 3;
-	f->type = NEWTON;
-	init_point(&f->p);
+	f->c.phas1 = 6;
+	f->c.phas2 = 11;
+	f->c.phas3 = 16;
 }
 
 void	ft_newton(t_fractal *f)

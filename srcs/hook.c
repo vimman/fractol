@@ -1,29 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hook.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qdurot <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/11 23:53:44 by qdurot            #+#    #+#             */
+/*   Updated: 2017/10/11 23:53:47 by qdurot           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
-int		quit(t_env *e)
+void	iter(int keycode, t_env *e)
 {
-	mlx_destroy_window(e->mlx, e->win);
-	exit(0);
-}
-
-void	stop_mov(t_env *e)
-{
-	if (e->f.stop == 0)
-		e->f.stop = 1;
-	else if (e->f.stop == 1)
-		e->f.stop = 0;
-}
-
-void	change(int keycode, t_env *e)
-{
-	if (keycode == KEY_1)
-		julia_init(&e->f);
-	if (keycode == KEY_2)
-		mandel_init(&e->f);
-	if (keycode == KEY_3)
-		newton_init(&e->f);
-	if (keycode == KEY_4)
-		burn_init(&e->f);
+	if (keycode == KEY_OPEN_BRACKET)
+	{
+		e->f.it_max--;
+		if (e->f.it_max == 0)
+			e->f.it_max--;
+	}
+	else
+	{
+		e->f.it_max++;
+		if (e->f.it_max == 0)
+			e->f.it_max++;
+	}
 	redraw(e);
 }
 
@@ -49,22 +51,15 @@ int		key_hook(int keycode, t_env *e)
 		tg_text(e);
 	else if (keycode == KEY_COMMA || keycode == KEY_DOT)
 		mov_phaze(keycode, e);
+	else if (keycode == KEY_Z)
+		tg_it_zoom(e);
 	return (0);
 }
 
 int		mouse_hook(int button, int x, int y, t_env *e)
 {
 	if (button == 1)
-	{
-		double	x_delta;
-		double	y_delta;
-
-		x_delta = ((double)x / WIDTH) * (e->f.x2 - e->f.x1) + e->f.x1;
-		y_delta = ((double)y / HEIGHT) * (e->f.y2 - e->f.y1) + e->f.y1;
-
-		printf("delta de x : %f\n", x_delta);
-		printf("delta de y : %f\n", y_delta);
-	}
+		drag(button, x, y, e);
 	if (button == 4)
 		zoom(e, x, y, 1.1);
 	else if (button == 5)
@@ -81,9 +76,10 @@ int		expose_hook(t_env *e)
 
 void	hooks(t_env *e)
 {
-	mlx_hook(e->win, 6, 0, mmove, e);
-	mlx_hook(e->win, 17, (1L << 17), quit, e);
-	mlx_key_hook(e->win, key_hook, e);
+	mlx_hook(e->win, KeyPress, KeyPressMask, key_hook, e);
+	mlx_hook(e->win, MotionNotify, PointerMotionMask, mmove, e);
+	mlx_hook(e->win, ButtonRelease, 0, drop, e);
+	mlx_hook(e->win, DestroyNotify, StructureNotifyMask, quit, e);
 	mlx_mouse_hook(e->win, mouse_hook, e);
 	mlx_expose_hook(e->win, expose_hook, e);
 	mlx_loop(e->mlx);

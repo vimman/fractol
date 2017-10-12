@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qdurot <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/11 23:53:55 by qdurot            #+#    #+#             */
+/*   Updated: 2017/10/11 23:53:56 by qdurot           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
-void	put_pixel(t_point *p, t_env *e)
+void	put_pixel(int x, int y, int color, t_env *e)
 {
-	if (p->y < HEIGHT && p->x < WIDTH &&
-			p->y >= 0 && p->x >= 0)
-		e->data[p->y * WIDTH + p->x] = p->color;
+	if (y < HEIGHT && x < WIDTH &&
+			y >= 0 && x >= 0)
+		e->data[y * WIDTH + x] = color;
 }
 
 void	init_point(t_point *p)
@@ -13,12 +25,6 @@ void	init_point(t_point *p)
 	p->y = -1;
 	p->z = -1;
 	p->color = 0xFFFFFF;
-}
-
-void	init_img(t_env *e)
-{
-	e->img = mlx_new_image(e->mlx, WIDTH, HEIGHT);
-	e->data = (int *)mlx_get_data_addr(e->img, &e->bpp, &e->size, &e->endian);
 }
 
 int		init(t_env *e, char *arg)
@@ -30,6 +36,8 @@ int		init(t_env *e, char *arg)
 		return (-1);
 	e->win = mlx_new_window(e->mlx, WIDTH, HEIGHT, title);
 	free(title);
+	e->img = mlx_new_image(e->mlx, WIDTH, HEIGHT);
+	e->data = (int *)mlx_get_data_addr(e->img, &e->bpp, &e->size, &e->endian);
 	return (0);
 }
 
@@ -50,12 +58,16 @@ int		main(int argc, char **argv)
 	t_env		e;
 
 	if (argc < 2 || argc > 2)
-		usage();
+		usage(0);
 	if (argc == 2)
 	{
+		if (ft_strcmp(argv[1], "newton") &&
+			ft_strcmp(argv[1], "julia") &&
+			ft_strcmp(argv[1], "mandelbrot") &&
+			ft_strcmp(argv[1], "burningship"))
+			usage(0);
 		if (init(&e, argv[1]) < 0)
-			return (-1);
-		init_img(&e);
+			usage(1);
 		choice(argv[1], &e);
 	}
 	hooks(&e);

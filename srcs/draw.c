@@ -1,13 +1,16 @@
-#include "fractol.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qdurot <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/11 23:53:41 by qdurot            #+#    #+#             */
+/*   Updated: 2017/10/11 23:56:00 by qdurot           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	iter(int keycode, t_env *e)
-{
-	if (keycode == KEY_OPEN_BRACKET)
-		e->f.it_max--;
-	else
-		e->f.it_max++;
-	redraw(e);
-}
+#include "fractol.h"
 
 void	draw(t_env *e, void (*fractal)(t_fractal *f))
 {
@@ -19,9 +22,9 @@ void	draw(t_env *e, void (*fractal)(t_fractal *f))
 		{
 			fractal(&e->f);
 			color_point(&e->f);
-			put_pixel(&e->f.p, e);
+			put_pixel(e->f.p.x, e->f.p.y, e->f.p.color, e);
 		}
-		e->f.p.y = 0;
+		e->f.p.y = -1;
 	}
 	mlx_put_image_to_window(e->data, e->win, e->img, 0, 0);
 	if (e->f.text)
