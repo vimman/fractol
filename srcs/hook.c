@@ -35,24 +35,25 @@ int		key_hook(int keycode, t_env *e)
 		quit(e);
 	else if (keycode == KEY_C)
 		change_color(e);
+	else if (keycode == KEY_T)
+		tg_text(e);
+	else if (keycode == KEY_Z)
+		tg_it_zoom(e);
 	else if (keycode == KEY_SPACEBAR)
 		stop_mov(e);
-	else if (keycode == KEY_H || keycode == KEY_J ||
-			keycode == KEY_K || keycode == KEY_L ||
-			(keycode >= 123 && keycode <= 126))
-		move(keycode, e);
 	else if (keycode == KEY_BACKSPACE)
 		reset(e);
 	else if (keycode >= KEY_1 && keycode <= KEY_0)
 		change(keycode, e);
-	else if (keycode == KEY_OPEN_BRACKET || keycode == KEY_CLOSE_BRACKET)
-		iter(keycode, e);
-	else if (keycode == KEY_T)
-		tg_text(e);
+	else if (keycode == KEY_MINUS || keycode == KEY_EQUAL)
+		key_zoom(keycode, e);
 	else if (keycode == KEY_COMMA || keycode == KEY_DOT)
 		mov_phaze(keycode, e);
-	else if (keycode == KEY_Z)
-		tg_it_zoom(e);
+	else if (keycode == KEY_DOWN || keycode == KEY_UP ||
+			keycode == KEY_LEFT || keycode == KEY_RIGHT)
+		move(keycode, e);
+	else if (keycode == KEY_OPEN_BRACKET || keycode == KEY_CLOSE_BRACKET)
+		iter(keycode, e);
 	return (0);
 }
 
@@ -76,10 +77,10 @@ int		expose_hook(t_env *e)
 
 void	hooks(t_env *e)
 {
-	mlx_hook(e->win, KeyPress, KeyPressMask, key_hook, e);
-	mlx_hook(e->win, MotionNotify, PointerMotionMask, mmove, e);
-	mlx_hook(e->win, ButtonRelease, 0, drop, e);
-	mlx_hook(e->win, DestroyNotify, StructureNotifyMask, quit, e);
+	mlx_hook(e->win, KEYPRESS, KEYPRESSMASK, key_hook, e);
+	mlx_hook(e->win, MOTIONNOTIFY, POINTERMOTIONMASK, mmove, e);
+	mlx_hook(e->win, BUTTONRELEASE, 0, drop, e);
+	mlx_hook(e->win, DESTROYNOTIFY, STRUCTURENOTIFYMASK, quit, e);
 	mlx_mouse_hook(e->win, mouse_hook, e);
 	mlx_expose_hook(e->win, expose_hook, e);
 	mlx_loop(e->mlx);

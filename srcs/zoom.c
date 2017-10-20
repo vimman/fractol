@@ -20,6 +20,20 @@ void	tg_it_zoom(t_env *e)
 		e->f.it_zoom = 1;
 }
 
+void	key_zoom(int keycode, t_env *e)
+{
+	int	x;
+	int	y;
+
+	x = WIDTH / 2;
+	y = HEIGHT / 2;
+	if (keycode == KEY_EQUAL)
+		zoom(e, x, y, 1.1);
+	else
+		zoom(e, x, y, 0.9);
+	redraw(e);
+}
+
 void	zoom(t_env *e, int x, int y, double ratio)
 {
 	double	x_curs;

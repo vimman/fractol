@@ -2,7 +2,7 @@ NAME = fractol
 
 CC = clang
 
-CFLAGS = -Wall -Werror -Wextra -g3 -Ofast # -fsanitize=address  -std=c99
+CFLAGS = -Wall -Werror -Wextra -g3 -march=native -flto -Ofast # -fsanitize=address  -std=c99
 
 LFLAGS = -Llibft -lft -L$(MINILIB) -lmlx
 
@@ -10,8 +10,9 @@ DIR = srcs
 
 LIB = lib
 
-SRCS = main.c hook.c julia.c mandelbrot.c newton.c color.c color2.c	\
-	   draw.c move.c burn.c text.c usage.c zoom.c choice.c
+SRCS = main.c hook.c julia.c mandelbrot.c newton.c color.c color2.c		\
+	   draw.c move.c burn.c text.c usage.c zoom.c choice.c multibrot.c	\
+	   juliux.c celtic.c bird.c
 
 SRC = $(addprefix $(DIR)/,$(SRCS))
 

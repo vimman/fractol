@@ -41,4 +41,12 @@ void	redraw(t_env *e)
 		draw(e, ft_newton);
 	else if (e->f.type == BURN)
 		draw(e, ft_burn);
+	else if (e->f.type == MULTI)
+		draw(e, ft_multibrot);
+	else if (e->f.type == JULIUX)
+		draw(e, ft_juliux);
+	else if (e->f.type == CELTIC)
+		draw(e, ft_celtic);
+	else if (e->f.type == BIRD)
+		draw(e, ft_bird);
 }

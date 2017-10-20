@@ -51,6 +51,14 @@ void	reset(t_env *e)
 		choice("julia", e);
 	else if (e->f.type == BURN)
 		choice("burningship", e);
+	else if (e->f.type == MULTI)
+		choice("multibrot", e);
+	else if (e->f.type == JULIUX)
+		choice("juliux", e);
+	else if (e->f.type == CELTIC)
+		choice("celtic", e);
+	else if (e->f.type == BIRD)
+		choice("bird", e);
 }
 
 int		main(int argc, char **argv)
@@ -64,7 +72,11 @@ int		main(int argc, char **argv)
 		if (ft_strcmp(argv[1], "newton") &&
 			ft_strcmp(argv[1], "julia") &&
 			ft_strcmp(argv[1], "mandelbrot") &&
-			ft_strcmp(argv[1], "burningship"))
+			ft_strcmp(argv[1], "burningship") &&
+			ft_strcmp(argv[1], "multibrot") &&
+			ft_strcmp(argv[1], "juliux") &&
+			ft_strcmp(argv[1], "celtic") &&
+			ft_strcmp(argv[1], "bird"))
 			usage(0);
 		if (init(&e, argv[1]) < 0)
 			usage(1);

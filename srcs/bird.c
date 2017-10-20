@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   burn.c                                             :+:      :+:    :+:   */
+/*   bird.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qdurot <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/11 23:53:20 by qdurot            #+#    #+#             */
-/*   Updated: 2017/10/11 23:53:23 by qdurot           ###   ########.fr       */
+/*   Created: 2017/10/21 00:52:12 by qdurot            #+#    #+#             */
+/*   Updated: 2017/10/21 00:52:15 by qdurot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
 
-void	burn_init(t_fractal *f)
+void	bird_init(t_fractal *f)
 {
-	f->type = BURN;
+	f->type = BIRD;
 	f->text = 0;
 	f->it_zoom = 0;
 	f->x1 = -3.36;
@@ -28,7 +28,7 @@ void	burn_init(t_fractal *f)
 	f->c.phas3 = 9;
 }
 
-void	ft_burn(t_fractal *f)
+void	ft_bird(t_fractal *f)
 {
 	double	zi2;
 	double	zr2;
@@ -45,8 +45,8 @@ void	ft_burn(t_fractal *f)
 		zr2 = f->zr * f->zr;
 		zir2 = f->zr * f->zi;
 		f->tmp = f->zi;
-		f->zi = 2 * fabs(zir2) + f->ci;
-		f->zr = zr2 - zi2 + f->cr;
+		f->zi = ((zr2 * 3) - zi2) * fabs(f->zi) + f->ci;
+		f->zr = (zr2 - (zi2 * 3)) * fabs(f->zr) + f->cr;
 		if (!(zr2 + zi2 < 4 && ++f->i < f->it_max))
 			break ;
 	}

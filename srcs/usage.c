@@ -17,7 +17,8 @@ void	usage(int error)
 	if (error == 0)
 	{
 		ft_putstr_fd("Usage: ./fractol [julia | mandelbrot ", 2);
-		ft_putendl_fd("| newton | burningship]", 2);
+		ft_putstr_fd("| newton | burningship | multibrot | juliux ", 2);
+		ft_putendl_fd("| celtic | bird]", 2);
 	}
 	else if (error == 1)
 	{

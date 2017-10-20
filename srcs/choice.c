@@ -36,30 +36,35 @@ void	change(int keycode, t_env *e)
 		newton_init(&e->f);
 	if (keycode == KEY_4)
 		burn_init(&e->f);
+	if (keycode == KEY_5)
+		multi_init(&e->f);
+	if (keycode == KEY_6)
+		juliux_init(&e->f);
+	if (keycode == KEY_7)
+		celtic_init(&e->f);
+	if (keycode == KEY_8)
+		bird_init(&e->f);
 	redraw(e);
 }
 
 int		choice(char *arg, t_env *e)
 {
 	if (!ft_strcmp(arg, "newton"))
-	{
 		newton_init(&e->f);
-		draw(e, ft_newton);
-	}
 	else if (!ft_strcmp(arg, "julia"))
-	{
 		julia_init(&e->f);
-		draw(e, ft_julia);
-	}
 	else if (!ft_strcmp(arg, "mandelbrot"))
-	{
 		mandel_init(&e->f);
-		draw(e, ft_mandelbrot);
-	}
 	else if (!ft_strcmp(arg, "burningship"))
-	{
 		burn_init(&e->f);
-		draw(e, ft_burn);
-	}
+	else if (!ft_strcmp(arg, "multibrot"))
+		multi_init(&e->f);
+	else if (!ft_strcmp(arg, "juliux"))
+		juliux_init(&e->f);
+	else if (!ft_strcmp(arg, "celtic"))
+		celtic_init(&e->f);
+	else if (!ft_strcmp(arg, "bird"))
+		bird_init(&e->f);
+	redraw(e);
 	return (0);
 }

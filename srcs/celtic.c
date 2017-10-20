@@ -1,38 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   burn.c                                             :+:      :+:    :+:   */
+/*   celtic.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qdurot <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/11 23:53:20 by qdurot            #+#    #+#             */
-/*   Updated: 2017/10/11 23:53:23 by qdurot           ###   ########.fr       */
+/*   Created: 2017/10/20 23:34:55 by qdurot            #+#    #+#             */
+/*   Updated: 2017/10/20 23:35:01 by qdurot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fractol.h>
+#include "fractol.h"
 
-void	burn_init(t_fractal *f)
+void	celtic_init(t_fractal *f)
 {
-	f->type = BURN;
+	f->type = CELTIC;
 	f->text = 0;
 	f->it_zoom = 0;
 	f->x1 = -3.36;
 	f->x2 = 3.36;
 	f->y1 = -2.1;
 	f->y2 = 2.1;
-	f->it_max = 19;
+	f->it_max = 32;
 	f->color = 7;
-	f->c.phas1 = 5;
-	f->c.phas2 = 7;
-	f->c.phas3 = 9;
+	f->c.phas1 = 4;
+	f->c.phas2 = 6;
+	f->c.phas3 = 8;
 }
 
-void	ft_burn(t_fractal *f)
+void	ft_celtic(t_fractal *f)
 {
 	double	zi2;
 	double	zr2;
-	double	zir2;
 
 	f->cr = f->p.x * (f->x2 - f->x1) / WIDTH + f->x1;
 	f->ci = f->p.y * (f->y2 - f->y1) / HEIGHT + f->y1;
@@ -43,11 +42,10 @@ void	ft_burn(t_fractal *f)
 	{
 		zi2 = f->zi * f->zi;
 		zr2 = f->zr * f->zr;
-		zir2 = f->zr * f->zi;
-		f->tmp = f->zi;
-		f->zi = 2 * fabs(zir2) + f->ci;
-		f->zr = zr2 - zi2 + f->cr;
-		if (!(zr2 + zi2 < 4 && ++f->i < f->it_max))
+		f->tmp = fabs(zi2 - zr2) + f->ci;
+		f->zr = 2 * f->zr * f->zi + f->cr;
+		f->zi = f->tmp;
+		if (!(zi2 + zr2 < 4 && ++f->i < f->it_max))
 			break ;
 	}
 }
