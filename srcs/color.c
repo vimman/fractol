@@ -14,7 +14,7 @@
 
 void	mov_phaze(int keycode, t_env *e)
 {
-	if (keycode == KEY_COMMA)
+	if (keycode == KEY_DOT)
 	{
 		e->f.c.phas1 += 0.1;
 		e->f.c.phas2 += 0.2;

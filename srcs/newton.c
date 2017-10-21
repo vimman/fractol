@@ -16,6 +16,7 @@ void	newton_init(t_fractal *f)
 {
 	f->type = NEWTON;
 	f->text = 0;
+	f->stop = 0;
 	f->it_zoom = 0;
 	f->x1 = -2;
 	f->x2 = 2;

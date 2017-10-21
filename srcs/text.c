@@ -18,38 +18,36 @@ void	cross(t_env *e)
 	int	y;
 	int size;
 
-	size = 4;
+	size = 5;
 	x = WIDTH / 2 - size;
 	y = HEIGHT / 2 - size;
-	while (x <= WIDTH / 2 + size)
-		put_pixel(x++, HEIGHT / 2, RED, e);
-	while (y <= HEIGHT / 2 + size)
-		put_pixel(y++, WIDTH / 2, RED, e);
+	while (++x <= WIDTH / 2 + size)
+		mlx_pixel_put(e->mlx, e->win, x, HEIGHT / 2, WHITE);
+	while (++y <= HEIGHT / 2 + size)
+		mlx_pixel_put(e->mlx, e->win, WIDTH / 2, y, WHITE);
 }
 
 void	text(t_env *e)
 {
-	cross(e); //TODO
+	cross(e);
 	mlx_string_put(e->mlx, e->win, 10, 10, 0xFFFFFF, "iterations");
-	mlx_string_put(e->mlx, e->win, 150, 10, 0xFFFFFF, ft_itoa(e->f.it_max));
-	mlx_string_put(e->mlx, e->win, 10, 30, 0xFFFFFF, "hue");
-	mlx_string_put(e->mlx, e->win, 150, 30, 0xFFFFFF, ft_itoa(e->f.c.phas1));
-	mlx_string_put(e->mlx, e->win, 170, 30, 0xFFFFFF, ft_itoa(e->f.c.phas2));
-	mlx_string_put(e->mlx, e->win, 190, 30, 0xFFFFFF, ft_itoa(e->f.c.phas3));
+	mlx_string_put(e->mlx, e->win, 170, 10, 0xFFFFFF, ft_itoa(e->f.it_max));
+	mlx_string_put(e->mlx, e->win, 10, 30, 0xFFFFFF, "color");
+	mlx_string_put(e->mlx, e->win, 170, 30, 0xFFFFFF, ft_itoa(e->f.color));
 	mlx_string_put(e->mlx, e->win, 10, 50, 0xFFFFFF,
-			"change color           : c");
+			"change color    : c");
 	mlx_string_put(e->mlx, e->win, 10, 70, 0xFFFFFF,
-			"change hue             : <>");
+			"change hue      : <>");
 	mlx_string_put(e->mlx, e->win, 10, 90, 0xFFFFFF,
-			"change iteration       : []");
+			"change iteration: []");
 	mlx_string_put(e->mlx, e->win, 10, 110, 0xFFFFFF,
-			"mouse changes variable : space");
-	mlx_string_put(e->mlx, e->win, 10, 130, 0xFFFFFF, "phas2");
-	mlx_string_put(e->mlx, e->win, 10, 150, 0xFFFFFF, "phas3");
+			"mouse movement  : space");
+	mlx_string_put(e->mlx, e->win, 10, 130, 0xFFFFFF,
+			"iterating zoom  : z");
+	mlx_string_put(e->mlx, e->win, 10, 150, 0xFFFFFF,
+			"reset fractal   : backspace");
 	mlx_string_put(e->mlx, e->win, 10, 170, 0xFFFFFF,
-			"mouse changes variable : space");
-	mlx_string_put(e->mlx, e->win, 10, 190, 0xFFFFFF,
-			"mouse changes variable : space");
+			"quit            : q");
 }
 
 void	tg_text(t_env *e)

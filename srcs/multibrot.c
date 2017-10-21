@@ -22,11 +22,11 @@ void	multi_init(t_fractal *f)
 	f->x2 = 3.36;
 	f->y1 = -2.1;
 	f->y2 = 2.1;
-	f->it_max = 20;
+	f->it_max = 15;
 	f->color = 7;
-	f->c.phas1 = 4;
-	f->c.phas2 = 6;
-	f->c.phas3 = 8;
+	f->c.phas1 = 6;
+	f->c.phas2 = 10;
+	f->c.phas3 = 14;
 }
 
 void	ft_multibrot(t_fractal *f)

@@ -44,21 +44,22 @@ int		init(t_env *e, char *arg)
 void	reset(t_env *e)
 {
 	if (e->f.type == NEWTON)
-		choice("newton", e);
+		newton_init(&e->f);
 	else if (e->f.type == MANDEL)
-		choice("mandelbrot", e);
+		mandel_init(&e->f);
 	else if (e->f.type == JULIA)
-		choice("julia", e);
+		julia_init(&e->f);
 	else if (e->f.type == BURN)
-		choice("burningship", e);
+		burn_init(&e->f);
 	else if (e->f.type == MULTI)
-		choice("multibrot", e);
+		multi_init(&e->f);
 	else if (e->f.type == JULIUX)
-		choice("juliux", e);
+		juliux_init(&e->f);
 	else if (e->f.type == CELTIC)
-		choice("celtic", e);
+		celtic_init(&e->f);
 	else if (e->f.type == BIRD)
-		choice("bird", e);
+		bird_init(&e->f);
+	redraw(e);
 }
 
 int		main(int argc, char **argv)

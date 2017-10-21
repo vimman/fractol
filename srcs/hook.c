@@ -43,10 +43,10 @@ int		key_hook(int keycode, t_env *e)
 		stop_mov(e);
 	else if (keycode == KEY_BACKSPACE)
 		reset(e);
-	else if (keycode >= KEY_1 && keycode <= KEY_0)
-		change(keycode, e);
 	else if (keycode == KEY_MINUS || keycode == KEY_EQUAL)
 		key_zoom(keycode, e);
+	else if (keycode >= KEY_1 && keycode <= KEY_0)
+		change(keycode, e);
 	else if (keycode == KEY_COMMA || keycode == KEY_DOT)
 		mov_phaze(keycode, e);
 	else if (keycode == KEY_DOWN || keycode == KEY_UP ||
