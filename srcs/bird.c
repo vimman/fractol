@@ -32,7 +32,6 @@ void	ft_bird(t_fractal *f)
 {
 	double	zi2;
 	double	zr2;
-	double	zir2;
 
 	f->cr = f->p.x * (f->x2 - f->x1) / WIDTH + f->x1;
 	f->ci = f->p.y * (f->y2 - f->y1) / HEIGHT + f->y1;
@@ -43,7 +42,6 @@ void	ft_bird(t_fractal *f)
 	{
 		zi2 = f->zi * f->zi;
 		zr2 = f->zr * f->zr;
-		zir2 = f->zr * f->zi;
 		f->tmp = f->zi;
 		f->zi = ((zr2 * 3) - zi2) * fabs(f->zi) + f->ci;
 		f->zr = (zr2 - (zi2 * 3)) * fabs(f->zr) + f->cr;

@@ -2,7 +2,7 @@ NAME = fractol
 
 CC = clang
 
-CFLAGS = -Wall -Werror -Wextra -g3 -march=native -flto -Ofast # -fsanitize=address  -std=c99
+CFLAGS = -Wall -Werror -Wextra -g3 -march=native -flto -Ofast -fsanitize=address  -std=c99
 
 LFLAGS = -Llibft -lft -L$(MINILIB) -lmlx
 
@@ -38,7 +38,7 @@ UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
 	CC = gcc
 	MINILIB = minilibx
-	ADDS = -L/usr/X11/lib -lXext -lX11
+	ADDS = -L/usr/X11/lib -lXext -lX11 -lm
 endif
 ifeq ($(UNAME_S),Darwin)
 	ADDS = -framework OpenGl -framework AppKit
