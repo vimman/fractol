@@ -26,7 +26,7 @@ void	draw(t_env *e, void (*fractal)(t_fractal *f))
 		}
 		e->f.p.y = -1;
 	}
-	mlx_put_image_to_window(e->data, e->win, e->img, 0, 0);
+	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
 	if (e->f.text)
 		text(e);
 }
